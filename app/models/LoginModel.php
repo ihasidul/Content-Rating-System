@@ -1,0 +1,94 @@
+<?php
+
+/*
+TODO:
+    .write insert_user method
+    .write check_user method
+    .write update_password method
+    .write delete_user method
+*/
+require_once INCLUDES . "DataAccess.php";
+class LoginModel
+{
+    public $id;
+    public $password;
+
+
+
+    // function __construct($id, $password)
+    // {
+    //     $this->id = $id;
+    //     $this->password = $password;
+    // }
+
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    function insert_user($id, $password)
+    {
+
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "insert into login (id,password) values ('" + $id + "','" + $password + "');";
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    function validateLogin($id, $password)
+    {
+        try {
+
+            //echo $id . " " .  $password;
+            //this method will find if the user exists or not
+            $sql = "SELECT * FROM login WHERE id='" . $id . "' AND password='" . $password . "'";
+            $db =  new DataAccess();
+            $result = $db->getData($sql);
+
+            //these are for testing 
+            //while ($row = mysqli_fetch_assoc($result)) {
+            // echo "id: " . $row["id"] . " - Pass: " . $row["password"] . " " . $row["permission"] . "<br>";
+            //}
+
+
+            echo "I am in validateLogin";
+
+            if ($result->num_rows > 0) {
+                echo "I am in row 1 er beshi";
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    function getPermissionType($id, $password)
+    {
+        try {
+            //this method will find if the user exists or not
+            $sql = "SELECT permission FROM login WHERE id='" . $id . "' AND password='" . $password . "'";
+            $db =  new DataAccess();
+            $results = $db->getData($sql);
+            if ($results->num_rows > 0) {
+
+                return $results;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+}

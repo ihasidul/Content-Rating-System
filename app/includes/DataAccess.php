@@ -1,27 +1,35 @@
 <?php
 
-    class DataAccess {
-        public function DataBaseConnection() {
-            /**
-             *  Retrives a connection object to the database.
-             *  Only works with MySQL.
-             *  @return $conn -> which is a connection to the db and used to execute statements.
-             *  Remember to close the connection everytime.
-             */
+class DataAccess
+{
 
-            $dbServerName = "localhost";
-            $dbUserName = "root";
-            $dbPassword = "123";
-            $dbName = "gakkoudb";
-        
-            $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
-        
-            if (mysqli_connect_errno()) {
-                echo "Error: ". mysqli_connect_error();
-            }
 
-            return $conn;
-        }
+    public $connection;
+    private $dbServerName = "localhost";
+    private $dbUserName = "root";
+    private $dbPassword = "";
+    private $dbName = "crsdb";
+
+    public function __construct()
+    {
+
+        $this->connection = new  mysqli($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
     }
-    
-?>
+    //Todo: Finish the class with other functions
+    public function executeQuery($sql)
+    {
+        //here $sql is the query string
+
+        $result = $this->connection->query($sql);
+        $this->connection->close();
+    }
+    public function getData($sql)
+    {
+        $result = $this->connection->query($sql);
+        $this->connection->close();
+        return $result;
+        //this will return the data got from a select query
+        //You need to extract the data using $result->fetch_assoc()
+        //Then you will get  an associative array
+    }
+}
