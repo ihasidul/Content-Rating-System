@@ -33,9 +33,23 @@ class LoginController extends Controller
                     //echo $_SESSION["id"];
 
                     if (isset($_SESSION["id"])) {
+                        echo gettype($user->getPermissionType($user->id, $user->password));
+                        switch ($user->getPermissionType($user->id, $user->password)) {
+                            case "admin":
+                                echo " after permission done";
+                                header("Location: ../AdminController/index");
+                                break;
+                            case "user":
+                                header("Location: ../UserController/index");
+                            case "critic":
+                                header("Location: ../CriticController/index");
+                            case "contentCreator":
+                                header("Location: ../ContentCreatorController/index");
+                        }
 
 
-                        header("Location: ../AdminController/index");
+
+
                         // header("Location: ../views/admin.php");
                     }
                 } else {

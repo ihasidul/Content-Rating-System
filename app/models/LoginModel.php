@@ -80,10 +80,19 @@ class LoginModel
             //this method will find if the user exists or not
             $sql = "SELECT permission FROM login WHERE id='" . $id . "' AND password='" . $password . "'";
             $db =  new DataAccess();
-            $results = $db->getData($sql);
-            if ($results->num_rows > 0) {
+            $result = $db->getData($sql);
+            if ($result->num_rows == 1) {
+                $permissionType = "";
+                while ($row = $result->fetch_assoc()) {
+                    $permissionType .=  $row['permission'] . ""; //don't put space between "" here. It ruined a lot of my time
+                    // echo "permission " . $row["permission"];
+                    //$permissionType = (string) $row["permission"];
+                }
 
-                return $results;
+                //echo "I am in Permisson stuff";
+                //echo $permissionType;
+                //echo gettype($permissionType);
+                return $permissionType;
             } else {
                 return false;
             }
