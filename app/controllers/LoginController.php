@@ -36,20 +36,19 @@ class LoginController extends Controller
                         echo gettype($user->getPermissionType($user->id, $user->password));
                         switch ($user->getPermissionType($user->id, $user->password)) {
                             case "admin":
-                                echo " after permission done";
+                                //echo " after permission done";
                                 header("Location: ../AdminController/index");
-                                break;
+                                break; //break is needed.Otherwise it will break
                             case "user":
                                 header("Location: ../UserController/index");
+                                break;
                             case "critic":
                                 header("Location: ../CriticController/index");
+                                break;
                             case "contentCreator":
                                 header("Location: ../ContentCreatorController/index");
+                                break;
                         }
-
-
-
-
                         // header("Location: ../views/admin.php");
                     }
                 } else {

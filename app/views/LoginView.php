@@ -10,7 +10,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/login.css">
     <title>Login</title>
+
+    <script src="scripts/validation.js"></script>
 </head>
+
 <body>
 
 
@@ -25,7 +28,7 @@
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">Welcome</h3>
-                                <form action="LoginController/loginUser" method="post">
+                                <form name="loginForm" action="LoginController/loginUser" method="post" onsubmit="return validateform()">
                                     <div class="form-label-group">
                                         <input type="text" name="id" id="id" class="form-control" placeholder="Enter Your Id" required autofocus>
                                         <label for="id">ID</label>
