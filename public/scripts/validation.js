@@ -1,4 +1,4 @@
-function validateform() {
+function isTheIdAndPassEmpty() {
 	var name = document.loginForm.id.value;
 	var password = document.loginForm.password.value;
 

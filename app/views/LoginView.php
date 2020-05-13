@@ -27,8 +27,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Welcome</h3>
-                                <form name="loginForm" action="LoginController/loginUser" method="post" onsubmit="return validateform()">
+                                <h3 class="login-heading mb-4">Welcome, Please login to your account.</h3>
+                                <form name="loginForm" action="LoginController/loginUser" method="post" onsubmit="return isTheIdAndPassEmpty()">
                                     <div class="form-label-group">
                                         <input type="text" name="id" id="id" class="form-control" placeholder="Enter Your Id" required autofocus>
                                         <label for="id">ID</label>
