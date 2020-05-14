@@ -33,7 +33,7 @@ class LoginController extends Controller
                     //echo $_SESSION["id"];
 
                     if (isset($_SESSION["id"])) {
-                        echo gettype($user->getPermissionType($user->id, $user->password));
+                        //echo gettype($user->getPermissionType($user->id, $user->password));
                         switch ($user->getPermissionType($user->id, $user->password)) {
                             case "admin":
                                 //echo " after permission done";
@@ -61,5 +61,15 @@ class LoginController extends Controller
                 }
             }
         }
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+
+        header("Location: ../index");
+
+        //$this->view('LoginView');
     }
 }
