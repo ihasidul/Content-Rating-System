@@ -34,7 +34,7 @@
     </script>
 </head>
 
-<body>
+<body style="background-color:#E4F1F2 ">
     <header>
         <nav class="navbar sticky-top navbar-expand-lg navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Content-Rating-System</a>
@@ -54,7 +54,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item pt-1 mr-2">
-                        <h4>Username</h4>
+                        <h4><?php echo $_SESSION["id"]; ?></h4>
                     </li>
                     <li class="nav-item active">
                         <a class="btn btn-primary mr-3" href="../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
@@ -66,32 +66,37 @@
 
     <div class="h-75">
         <div class="row h-100">
-            <div class="h-100 ml-auto mr-2 col-md-2 border mt-5">
-                <div class="row">
-                    <div class="m-3 col-md-1">
-                        <div class="badge badge-primary">
-                            Whoa.
-                        </div>
-                    </div>
-                    <div class="m-3 col-md-1">
-                        <div class="badge badge-primary">
-                            Whoa.
-                        </div>
-                    </div>
-                    <div class="m-3 col-md-1">
-                        <div class="badge badge-primary">
-                            Whoa.
-                        </div>
-                    </div>
+            <div class="h-100 ml-auto mr-2 col-md-2 border mt-5" style="background-color: #4B94AF;">
+                <div class="row " id="totalUserData">
+
+                    <table id="" class="table table-sm table-borderless table-dark" cellspacing="0" width="100%">
+                        <thead>
+                            <th>Total Users</th>
+                            <th>Total Critics</th>
+                            <th>Total ContentCreators</th>
+                        </thead>
+                        <tbody>
+                            <td> <?php
+                                    echo $data['totalUser'];
+                                    ?></td>
+                            <td><?php
+                                echo $data['totalCritic'];
+                                ?></td>
+                            <td><?php
+                                echo $data['totalContentCreator'];
+                                ?></td>
+                        </tbody>
+
+                    </table>
                 </div>
 
                 <div class="col" align="center">
 
-                    <button class="m-3 p-2 btn btn-primary">thing</button><br>
-                    <button class="m-3 p-2 btn btn-primary">thing</button><br>
-                    <button class="m-3 p-2 btn btn-primary">thing</button><br>
-                    <button class="m-3 p-2 btn btn-primary">thing</button><br>
-                    <button class="m-3 p-2 btn btn-primary">thing</button><br>
+                    <button class="m-4 p-2 btn btn-primary">GENERAL USER</button><br>
+                    <button class="m-3 p-2 btn btn-primary">CRITICS</button><br>
+                    <button class="m-3 p-2 btn btn-primary">CONTENT CREATOR</button><br>
+                    <button class="m-3 p-2 btn btn-primary">CONTENT LIST</button><br>
+
 
                 </div>
             </div>

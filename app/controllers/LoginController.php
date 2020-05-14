@@ -7,6 +7,10 @@ class LoginController extends Controller
         // Return a 'view' or do nothing.
         $this->view('LoginView');
     }
+    function phpAlert($msg)
+    {
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+    }
 
     public function loginUser()
     {
@@ -15,7 +19,8 @@ class LoginController extends Controller
 
             if (empty($_POST['id']) || empty($_POST['password'])) {
                 // echo "Incorrect password.";
-                $error = "Username or Password is invalid";
+                header("Location: ../index");
+                //$this->phpAlert($error);
             } else {
                 $user = $this->model('LoginModel');
                 $user->setId($_POST['id']);
@@ -71,5 +76,10 @@ class LoginController extends Controller
         header("Location: ../index");
 
         //$this->view('LoginView');
+    }
+
+    public function loadSignUp()
+    {
+        $this->view('SignUpView');
     }
 }

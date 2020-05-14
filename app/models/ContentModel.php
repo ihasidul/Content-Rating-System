@@ -13,7 +13,7 @@ class ContentModel
 
 
 
-    function setContentInfo($contentid,$contentname,$type,$genre,$poster,$link,$castinfo,$date)
+    public function setContentInfo($contentid,$contentname,$type,$genre,$poster,$link,$castinfo,$date)
     {
         $this-> id = $contentid;
         $this-> name = $contentname;
@@ -47,6 +47,15 @@ class ContentModel
     }
     public function getCdate() {
         return $this -> date ;
+    }
+
+    public function getTotalNumberOfContentCreator(){
+        $sql = "SELECT * FROM critics";
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+
+        return $result->num_rows;
     }
    
 

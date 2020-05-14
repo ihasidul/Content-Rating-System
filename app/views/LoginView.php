@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/login.css">
     <title>Login</title>
 
-    <script src="scripts/validation.js"></script>
+    <script src="scripts/Validation.js"></script>
 </head>
 
 <body>
@@ -28,14 +28,14 @@
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">Welcome, Please login using your id and password.</h3>
-                                <form name="loginForm" action="LoginController/loginUser" method="post" onsubmit="return validateform()">
+                                <form name="loginForm" action="LoginController/loginUser" method="post" onsubmit="return isTheIdAndPassEmpty()">
                                     <div class="form-label-group">
-                                        <input type="text" name="id" id="id" class="form-control" placeholder="Enter Your Id" required autofocus>
+                                        <input type="text" name="id" id="id" class="form-control" placeholder="Enter Your Id" autofocus>
                                         <label for="id">ID</label>
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                                         <label for="password">Password</label>
                                     </div>
 
@@ -44,11 +44,12 @@
                                         <label class="custom-control-label" for="customCheck1">Remember password</label>
                                     </div> -->
                                     <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" name="submit" formmethod="post">Login</button>
-                                    <button class="btn btn-lg btn-info btn-block btn-signup text-uppercase font-weight-bold mb-2" name="signUp">Sign Up</button>
+                                    <a href="./LoginController/loadSignUp" class="btn btn-lg btn-info btn-block btn-signup text-uppercase font-weight-bold mb-2">SignUp</a>
                                     <!--<div class="text-center">
                                         <a class="small" href="#">Forgot password?</a>
                                     </div>-->
                                 </form>
+                                <!-- <button class="btn btn-lg btn-info btn-block btn-signup text-uppercase font-weight-bold mb-2" formaction="./LoginController/loadSignUp" name="signUp">Sign Up</button> -->
                             </div>
                         </div>
                     </div>
