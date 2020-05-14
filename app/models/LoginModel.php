@@ -31,7 +31,7 @@ class LoginModel
         $this->password = $password;
     }
 
-    function insert_user($id, $password)
+    function insertUser($id, $password)
     {
 
         try {
