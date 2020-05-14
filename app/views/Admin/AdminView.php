@@ -5,14 +5,10 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.css" />
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.js"></script>
     <!--<script src="../includes/AdminTables.js"></script> -->
 
     <style>
@@ -27,6 +23,12 @@
         html,
         body {
             height: 100%;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: right;
+            visibility: hidden;
         }
     </style>
     <script>
@@ -47,13 +49,13 @@
                 <ul class="navbar-nav mr-auto ml-auto">
                     <li class="nav-item ml-auto mx-sm-5">
                         <form class="form-inline my-1 my-lg-0">
-                            <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
+                            <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
                         </form>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pt-1 mr-2">
+                    <li class="nav-item text-white pt-1 mr-2">
                         <h4><?php echo $_SESSION["id"]; ?></h4>
                     </li>
                     <li class="nav-item active">
@@ -64,9 +66,9 @@
         </nav>
     </header>
 
-    <div class="h-75">
+    <div class="h-100">
         <div class="row h-100">
-            <div class="h-100 ml-auto mr-2 col-md-2 border mt-5" style="background-color: #4B94AF;">
+            <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
                 <div class="row " id="totalUserData">
 
                     <table id="" class="table table-sm table-borderless table-dark" cellspacing="0" width="100%">
@@ -102,38 +104,22 @@
             </div>
 
             <div class="mr-auto ml-2 col-md-8">
-                <div class="row mt-5" id="courses_table">
-                    <h1 class="display-4">Critic Dashboard</h1>
-                    <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <div class="row mt-5" id="table_div">
+                    <h2 class="display-6">General User Dashboard</h2>
+                    <table id="general_user_table" class="table table-striped table-dark table-bordered" cellspacing="0" style="width:100%">
                         <thead>
                             <tr>
                                 <th>User ID</th>
                                 <th>Name</th>
-                                <th>Content</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
-                                <th>AAA</th>
+                                <th>Email</th>
+                                <th>Phone</th>
 
                             </tr>
                         </thead>
+
                         <tbody id="CourseTable">
                             <!-- User table goes here. -->
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
-                            <td>Gay</td>
+
                         </tbody>
                     </table>
                 </div>
@@ -142,5 +128,30 @@
     </div>
 
 </body>
+
+<script>
+    var table = $('#general_user_table').DataTable({
+        "ajax": {
+            "url": "getAllUsers",
+        },
+
+        "columns": [{
+                "data": "User ID"
+            },
+            {
+                "data": "Name"
+            },
+            {
+                "data": "Email"
+            },
+            {
+                "data": "Phone"
+            },
+        ],
+    }, );
+    $('#search').on('keyup', function() {
+        table.search(this.value).draw();
+    });
+</script>
 
 </html>

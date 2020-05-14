@@ -30,4 +30,10 @@ class AdminController extends Controller
         $cc = $this->model('ContentCreatorModel');
         return $cc->getTotalNumberOfContentCreator();
     }
+
+    public function getAllUsers()
+    {
+        $users = $this->model('UserModel')->getAllUsers();
+        echo json_encode(["data" => $users]);
+    }
 }

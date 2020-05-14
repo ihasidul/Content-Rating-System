@@ -68,6 +68,17 @@ class LoginController extends Controller
         }
     }
 
+    public function sighnUpUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_POST["user_type"] == "user") {
+                //write user object using post data and send it there 
+            } else if ($_POST["user_type"] == "contentCreator") {
+                //write content Creator object using past data
+            }
+        }
+    }
+
     public function logout()
     {
         session_unset();

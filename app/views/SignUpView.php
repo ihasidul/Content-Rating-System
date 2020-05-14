@@ -29,7 +29,7 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Your Account</h4>
             <p class="text-center">Get registered today!</p>
-            <form method="POST" action="Registration/register">
+            <form method="POST" action="">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
