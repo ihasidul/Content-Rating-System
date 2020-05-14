@@ -1,33 +1,26 @@
 <?php
-class User
+require_once INCLUDES . "DataAccess.php";
+class UserModel
 {
 
 
-public $Email;
-public $User id;
-public $ passward;
+    public $Email;
+    public $Userid;
+    public $passward;
 
+    public function setContentInfo($Email, $Userid, $password)
+    {
+        $this->id = $Email;
+        $this->name = $Userid;
+        $this->genre = $password;
+    }
+    public function getTotalNumberOfUser()
+    {
+        $sql = "SELECT * FROM user";
+        $db = new DataAccess();
 
+        $result = $db->getData($sql);
 
-
-
-function setContentInfo($Email,$User id,$passward)
-{
-$this-> id = $Emailid;
-$this-> name = $User id;
-$this-> genre = $passward;
-
+        return $result->num_rows;
+    }
 }
-function getContentInfo()
-{
-
-return $this -> email ;
-return $this -> name;
-
-return $this -> name;
-
-
-return $this -> passward;
-
-}
-?>
