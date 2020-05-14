@@ -49,14 +49,7 @@ class ContentModel
         return $this -> date ;
     }
 
-    public function getTotalNumberOfContentCreator(){
-        $sql = "SELECT * FROM critics";
-        $db = new DataAccess();
-
-        $result = $db->getData($sql);
-
-        return $result->num_rows;
-    }
+    
    
 
 
