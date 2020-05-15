@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 12:40 PM
+-- Generation Time: May 15, 2020 at 07:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -87,6 +87,7 @@ CREATE TABLE `contentcreator` (
 
 INSERT INTO `contentcreator` (`name`, `id`, `email`, `phone`) VALUES
 ('habib', 'cc-098', 'asd@a.com', '0134990332'),
+('Marques Brownlee', 'cc-7', 'mkbhd@gmail.com', '01987655628'),
 ('Jeson', 'cc-999', 'jj@gam.com', '098765432');
 
 -- --------------------------------------------------------
@@ -108,6 +109,7 @@ CREATE TABLE `critics` (
 
 INSERT INTO `critics` (`name`, `id`, `email`, `phone`) VALUES
 ('critic ', 'c-123', 'c@gmail.com', '0124'),
+('Martin luther ', 'c-6', 'martin00@gamail.com', '01927308430'),
 ('James', 'c-777', 'james@gamil.com', '099876545678');
 
 -- --------------------------------------------------------
@@ -119,16 +121,21 @@ INSERT INTO `critics` (`name`, `id`, `email`, `phone`) VALUES
 CREATE TABLE `login` (
   `id` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `permission` varchar(50) NOT NULL
+  `permission` varchar(50) NOT NULL,
+  `autoId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `password`, `permission`) VALUES
-('a-123', '123', 'admin'),
-('c-123', '123', 'critic');
+INSERT INTO `login` (`id`, `password`, `permission`, `autoId`) VALUES
+('a-123', '123', 'admin', 1),
+('c-123', '123', 'critic', 2),
+('u-3', '123', 'user', 3),
+('u-4', '123', 'user', 4),
+('c-6', '123', 'user', 6),
+('cc-7', '123', 'user', 7);
 
 -- --------------------------------------------------------
 
@@ -160,7 +167,7 @@ CREATE TABLE `user` (
   `name` varchar(40) NOT NULL,
   `id` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `phone` int(40) NOT NULL,
+  `phone` varchar(40) NOT NULL,
   `list` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -169,8 +176,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`name`, `id`, `email`, `phone`, `list`) VALUES
-('ka', 'u-000', 'asd@a.com', 1919212121, ''),
-('user', 'u-123', 'u@gmail.com', 124227, '');
+('ka', 'u-000', 'asd@a.com', '1919212121', ''),
+('user', 'u-123', 'u@gmail.com', '124227', ''),
+('Hasib mia', 'u-3', 'hasib@kmail.com', '0169765432', ''),
+('Hasib mia', 'u-4', 'hasib@kmail.com', '0169765432', '');
 
 --
 -- Indexes for dumped tables
@@ -195,6 +204,12 @@ ALTER TABLE `critics`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`autoId`);
+
+--
 -- Indexes for table `pendingcritic`
 --
 ALTER TABLE `pendingcritic`
@@ -205,6 +220,16 @@ ALTER TABLE `pendingcritic`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `autoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
