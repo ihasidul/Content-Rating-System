@@ -106,16 +106,18 @@ class LoginController extends Controller
                 $loginObj->insertUser($id, $_POST['user_password'], "user");
             } else if ($_POST["user_type"] == "contentCreator") {
                 //write content Creator object using post data
-                //write user object using post data and send it there 
+
                 $userObj = $this->model('ContentCreatorModel');
+                //function insertContentCreator($name, $id, $email, $phone)
                 $id = $this->makeId($_POST['user_type']);
                 //insertUser($name, $id, $email, $phone)
-                $userObj->insertUser($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
+                $userObj->insertContentCreator($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
                 $loginObj = $this->model('LoginModel');
                 //insertUser($id, $password, $permissionType)
                 $loginObj->insertUser($id, $_POST['user_password'], "user");
             } else if ($_POST["user_type"] == "critic") {
                 //write content critic object using post data
+
             }
         }
     }
