@@ -50,7 +50,7 @@
                     <li class="nav-item ml-auto mx-sm-5">
                         <form class="form-inline my-1 my-lg-0">
                             <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
+
                         </form>
                     </li>
                 </ul>
@@ -92,21 +92,29 @@
                     </table>
                 </div>
 
-                <div class="col" align="center">
+                <div class="col " align="center">
 
-                    <button class="m-4 p-2 btn btn-primary">GENERAL USER</button><br>
-                    <button class="m-3 p-2 btn btn-primary">CRITICS</button><br>
-                    <button class="m-3 p-2 btn btn-primary">CONTENT CREATOR</button><br>
+                    <button name="user_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">GENERAL USER LIST</button><br>
+                    <button name="critic_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">CRITICS LIST</button><br>
+                    <button class="m-3 p-2 btn btn-primary">CONTENT CREATOR LIST</button><br>
                     <button class="m-3 p-2 btn btn-primary">CONTENT LIST</button><br>
+                    <button class="m-3 p-2 btn btn-primary">REGISTER CRITIC</button><br>
 
 
                 </div>
             </div>
 
             <div class="mr-auto ml-2 col-md-8">
-                <div class="row mt-5" id="table_div">
-                    <h2 class="display-6">General User Dashboard</h2>
-                    <table id="general_user_table" class="table table-striped table-dark table-bordered" cellspacing="0" style="width:100%">
+
+                <div name="important_tables" class="mt-5" id="user_table_div">
+
+                    <div>
+                        <h2 class="display-6">General User Dashboard</h2><br>
+                    </div>
+
+
+                    <table id="general_user_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -122,6 +130,37 @@
 
                         </tbody>
                     </table>
+
+
+
+                </div>
+                <div name="important_tables" class="mt-5" id="critic_table_div">
+
+                    <div>
+                        <h2 class="display-6">Critic Dashboard</h2><br>
+                    </div>
+
+
+                    <table id="critic_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0" style="width:100%">
+
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="CourseTable">
+                            <!-- User table goes here. -->
+
+                        </tbody>
+                    </table>
+
+
+
                 </div>
             </div>
         </div>
@@ -130,10 +169,22 @@
 </body>
 
 <script>
-    var table = $('#general_user_table').DataTable({
+    $(document).ready(function() {
+        for (var i = 0; i < document.getElementsByName('important_tables').length; i++) {
+            document.getElementsByName('important_tables')[i].style.display = "none";
+        }
+        document.getElementById('user_table_div').style.display = "inline";
+    });
+    var tableGU = $('#general_user_table').DataTable({
         "ajax": {
             "url": "getAllUsers",
         },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3, ]
+        }],
+
 
         "columns": [{
                 "data": "User ID"
@@ -149,7 +200,48 @@
             },
         ],
     }, );
+
+    var tableCritic = $('#critic_table').DataTable({
+        "ajax": {
+            "url": "getAllCritic",
+        },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3, ]
+        }],
+
+        "columns": [{
+                "data": "User ID"
+            },
+            {
+                "data": "Name"
+            },
+            {
+                "data": "Email"
+            },
+            {
+                "data": "Phone"
+            },
+
+        ],
+    }, );
+
+    function toggleTable(id) {
+        console.log(document.getElementsByName('important_tables'));
+
+        for (var i = 0; i < document.getElementsByName('important_tables').length; i++) {
+            document.getElementsByName('important_tables')[i].style.display = "none";
+        }
+        document.getElementById(id).style.display = "inline";
+
+    }
+
     $('#search').on('keyup', function() {
+        tableGU.search(this.value).draw();
+        tableCritic.search(this.value).draw();
+        table.search(this.value).draw();
+        table.search(this.value).draw();
         table.search(this.value).draw();
     });
 </script>
