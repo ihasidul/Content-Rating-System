@@ -62,7 +62,7 @@ class ContentModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into content (contentid,contentname,type,genre,poster,link,castinfo,date) values ('" + $contentid + "','" + $contentname + "','" + $type + "','" + $genre + "','" + $poster + "','" + $link + "','" + $castinfo + "','" + $date + "');";
+            $sql = "insert into content (contentid,contentname,type,genre,poster,link,castinfo,date) values ('" . $contentid . "','" . $contentname . "','" . $type . "','" . $genre . "','" . $poster . "','" . $link . "','" . $castinfo . "','" . $date . "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -74,7 +74,7 @@ class ContentModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "delete from content where id='" + $contentid + "'";
+            $sql = "delete from content where id='" . $contentid . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {

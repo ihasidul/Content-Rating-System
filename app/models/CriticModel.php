@@ -29,7 +29,7 @@ class CriticModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into critics (name,id,email,phone) values ('" + $name + "','" + $id + "','" + $email + "','" + $phone + "');";
+            $sql = "insert into critics (name,id,email,phone) values ('" . $name . "','" . $id . "','" . $email . "','" . $phone . "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -41,7 +41,7 @@ class CriticModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "delete from critics where id='" + $id + "'";
+            $sql = "delete from critics where id='" . $id . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {

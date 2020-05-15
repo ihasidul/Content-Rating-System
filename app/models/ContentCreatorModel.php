@@ -53,7 +53,7 @@ class ContentCreatorModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into contentcreator (name,id,email,phone) values ('" + $name + "','" + $id + "','" + $email + "','" + $phone + "');";
+            $sql = "insert into contentcreator (name,id,email,phone) values ('" . $name . "','" . $id . "','" . $email . "','" . $phone . "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -65,7 +65,7 @@ class ContentCreatorModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "delete from contentcreator where id='" + $id + "'";
+            $sql = "delete from contentcreator where id='" . $id . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
