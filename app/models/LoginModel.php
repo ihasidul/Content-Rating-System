@@ -53,10 +53,15 @@ class LoginModel
 
     public function getLatestAutoId() //this will get latest auto id of login table
     {
-        $sql = "SELECT MAX(autoId) FROM login";
+        $sql = "SELECT MAX(autoId) AS autoId FROM login";
         $db =  new DataAccess();
         $result = $db->getData($sql);
-        return (int) $result;
+
+
+        while ($row = $result->fetch_assoc()) {
+            $data =  $row['autoId'];
+        }
+        return $data;
     }
 
     function validateLogin($id, $password)
