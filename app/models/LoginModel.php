@@ -12,6 +12,7 @@ class LoginModel
 {
     public $id;
     public $password;
+    public $permissionType;
 
 
 
@@ -21,22 +22,19 @@ class LoginModel
     //     $this->password = $password;
     // }
 
-    function setId($id)
+    function setLoginInfo($id,$password,$permissionType)
     {
         $this->id = $id;
-    }
-
-    function setPassword($password)
-    {
         $this->password = $password;
+        $this->permissionType = $permissionType;
     }
 
-    function insertUser($id, $password)
+    function insertUser($id, $password,$permissionType)
     {
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into login (id,password) values ('" + $id + "','" + $password + "');";
+            $sql = "insert into login (id,password,permission) values ('" + $id + "','" + $password + "','" + $permissionType + "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {

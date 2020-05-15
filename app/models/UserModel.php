@@ -4,16 +4,44 @@ class UserModel
 {
 
 
-    public $Email;
-    public $Userid;
-    public $passward;
+    public $name;
+    public $id;
+    public $email;
+    public $phone;
 
-    public function setContentInfo($Email, $Userid, $password)
+    public function setUserInformation($name, $id, $email, $phone)
     {
-        $this->id = $Email;
-        $this->name = $Userid;
-        $this->genre = $password;
+        $this->name = $name;
+        $this->id = $id;
+        $this->email = $email;
+        $this->phone = $phone;
     }
+
+    function insertUser($name, $id, $email, $phone)
+    {
+
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "insert into user (name,id,email,phone) values ('" + $name + "','" + $id + "','" + $email + "','" + $phone + "');";
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    function deleteUser($id)
+    {
+
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "delete from user where id='" + $id + "'";
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function getTotalNumberOfUser()
     {
         $sql = "SELECT * FROM user";

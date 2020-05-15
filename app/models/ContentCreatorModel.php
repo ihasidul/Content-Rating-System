@@ -2,17 +2,19 @@
 require_once INCLUDES . "DataAccess.php";
 class ContentCreatorModel
 {
+    public $name;
+    public $id;
+    public $email;
+    public $phone;
 
 
-    public $Email;
-    public $Userid;
-    public $passward;
 
-    public function setContentCreatorInfo($Email, $Userid, $password)
+    public function setContentCreatorInfo($name, $id, $email, $phone)
     {
-        $this->id = $Email;
-        $this->name = $Userid;
-        $this->genre = $password;
+        $this->name = $name;
+        $this->id = $id;
+        $this->email = $email;
+        $this->phone = $phone;
     }
     public function getTotalNumberOfContentCreator()
     {
@@ -43,6 +45,31 @@ class ContentCreatorModel
             return $users;
         } else {
             echo "0 results";
+        }
+    }
+
+    function insertContentCreator($name, $id, $email, $phone)
+    {
+
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "insert into contentcreator (name,id,email,phone) values ('" + $name + "','" + $id + "','" + $email + "','" + $phone + "');";
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    function deleteContentCreator($id)
+    {
+
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "delete from contentcreator where id='" + $id + "'";
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 }
