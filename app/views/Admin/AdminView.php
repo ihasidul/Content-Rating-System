@@ -95,11 +95,11 @@
 
                 <div class="col " align="center">
 
-                    <button name="user_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">GENERAL USER LIST</button><br>
-                    <button name="critic_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">CRITICS LIST</button><br>
-                    <button name="contentCreator_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">CONTENT CREATOR LIST</button><br>
-                    <button name="contentList_table_div" class="m-3 p-2 btn btn-primary">CONTENT LIST</button><br>
-                    <button name="registerCritic_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">REGISTER CRITIC</button><br>
+                    <button name="user_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">GENERAL USER LIST</button><br>
+                    <button name="critic_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CRITICS LIST</button><br>
+                    <button name="contentCreator_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT CREATOR LIST</button><br>
+                    <button name="contentList_table_div" class="m-3 p-2 btn btn-block btn-light">CONTENT LIST</button><br>
+                    <button name="registerCritic_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">REGISTER CRITIC</button><br>
 
 
                 </div>
