@@ -97,6 +97,7 @@ class LoginController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_POST["user_type"] == "user") {
                 //write user object using post data and send it there 
+                echo "I am at user";
                 $userObj = $this->model('UserModel');
                 $id = $this->makeId($_POST['user_type']);
                 //insertUser($name, $id, $email, $phone)
@@ -121,12 +122,13 @@ class LoginController extends Controller
                 //function insertContentCreator($name, $id, $email, $phone)
                 $id = $this->makeId($_POST['user_type']);
                 //insertUser($name, $id, $email, $phone)
-                $userObj->insertContentCreator($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
+                $userObj->insertCritic($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
                 $loginObj = $this->model('LoginModel');
                 //insertUser($id, $password, $permissionType)
                 $loginObj->insertUser($id, $_POST['user_password'], "user");
             }
         }
+        header("Location: ../index");
     }
 
     public function logout()

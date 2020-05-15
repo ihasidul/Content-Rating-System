@@ -29,7 +29,7 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Your Account</h4>
             <p class="text-center">Get registered today!</p>
-            <form method="POST" action="">
+            <form method="POST" action="signUpUser">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
@@ -58,7 +58,7 @@
                         <option selected disabled>Who are you?</option>
                         <option value="user">Normal User</option>
                         <option value="contentCreator">Content Creator</option>
-                        <option value="contentCreator">Critic</option>
+                        <option value="critic">Critic</option>
                     </select>
                 </div> <!-- form-group end.// -->
                 <div class="form-group input-group">
