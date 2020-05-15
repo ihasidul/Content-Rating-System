@@ -70,13 +70,47 @@ class LoginController extends Controller
         }
     }
 
-    public function sighnUpUser()
+    public function makeId($userType)
+    {
+        $idVal = 1 + $this->model('LoginModel')->getLatestAutoId();
+        if($userType == "admin")
+        {
+           //get autoIncriment value of login table add some prefix then return 
+           $id = "a-" . $idVal;  
+           return  $id;
+        }else if($userType == "user")
+        {
+           //get autoIncriment value of login table add some prefix then return 
+           $id = "u-" . $idVal;  
+           return  $id;
+        }else if($userType == "critic")
+        {
+           //get autoIncriment value of login table add some prefix then return 
+           $id = "c-" . $idVal;  
+           return  $id;
+        }else if($userType == "contentCreator")
+        {
+           //get autoIncriment value of login table add some prefix then return 
+           $id = "cc-" . $idVal;  
+           return  $id;
+        }
+    }
+
+    public function signUpUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_POST["user_type"] == "user") {
                 //write user object using post data and send it there 
+                $userObj = $this->model('UserModel');
+                $id = $this->makeId($_POST['user_type']); 
+                //insertUser($name, $id, $email, $phone)
+                $userObj->insertUser($_POST['user_name'],$id,$_POST['user_email'],$_POST['user_phone']);
+                $loginObj = $this->model('LoginModel');
+                $loginObj->insert
             } else if ($_POST["user_type"] == "contentCreator") {
-                //write content Creator object using past data
+                //write content Creator object using post data
+            } else if ($_POST["user_type"] == "critic") {
+                //write content critic object using post data
             }
         }
     }
