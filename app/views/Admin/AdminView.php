@@ -67,6 +67,7 @@
     </header>
 
     <div class="h-100">
+        <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a>
         <div class="row h-100">
             <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
                 <div class="row " id="totalUserData">
@@ -165,11 +166,11 @@
                 <div name="important_tables" class="mt-5" id="user_table_div">
 
                     <div>
-                        <h2 class="display-6">General User List</h2><br>
+                        <h2 class="display-6">Pending Critic List</h2><br>
                     </div>
 
 
-                    <table id="registerCirtic_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+                    <table id="registerCritic_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
 
                         <thead>
                             <tr>
@@ -186,9 +187,6 @@
 
                         </tbody>
                     </table>
-
-
-
                 </div>
                 <!-- Here is Content Creator Table -->
                 <div name="important_tables" class="mt-5" id="contentCreator_table_div">
@@ -236,7 +234,7 @@
         "autoWidth": false,
         "columnDefs": [{
             "width": "32%",
-            "targets": [0, 1, 2, 3, ]
+            "targets": [0, 1, 2, 3]
         }],
 
 

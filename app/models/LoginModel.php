@@ -22,14 +22,23 @@ class LoginModel
     //     $this->password = $password;
     // }
 
-    function setLoginInfo($id,$password,$permissionType)
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+    function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    function setLoginInfo($id, $password, $permissionType)
     {
         $this->id = $id;
         $this->password = $password;
         $this->permissionType = $permissionType;
     }
 
-    function insertUser($id, $password,$permissionType)
+
+    function insertUser($id, $password, $permissionType)
     {
 
         try {

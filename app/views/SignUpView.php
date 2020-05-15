@@ -58,6 +58,7 @@
                         <option selected disabled>Who are you?</option>
                         <option value="user">Normal User</option>
                         <option value="contentCreator">Content Creator</option>
+                        <option value="contentCreator">Critic</option>
                     </select>
                 </div> <!-- form-group end.// -->
                 <div class="form-group input-group">
@@ -75,7 +76,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
                 </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="../">Log In</a> </p>
+                <p class="text-center">Have an account? <a href="../index">Log In</a> </p>
             </form>
         </article>
     </div> <!-- card.// -->

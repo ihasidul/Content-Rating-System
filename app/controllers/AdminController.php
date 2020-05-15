@@ -48,4 +48,15 @@ class AdminController extends Controller
         $users = $this->model('CriticModel')->getAllCritic();
         echo json_encode(["data" => $users]);
     }
+
+    public function getAllPendingCritic()
+    {
+        $users = $this->model('CriticModel')->getAllPendingCritic();
+        echo json_encode(["data" => $users]);
+    }
+
+    public function TestingButton()
+    {
+        echo "Hoise toh hasidul eto dum ken";
+    }
 }

@@ -7,7 +7,7 @@ class LoginController extends Controller
         // Return a 'view' or do nothing.
         $this->view('LoginView');
     }
-    function phpAlert($msg)
+    public function phpAlert($msg)
     {
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
     }
@@ -33,6 +33,8 @@ class LoginController extends Controller
                     //not here yet
                     $_SESSION["id"] = $user->id;
                     $_SESSION["password"] = $user->password;
+
+
 
                     // echo $_SESSION["id"];
                     //echo $_SESSION["id"];
