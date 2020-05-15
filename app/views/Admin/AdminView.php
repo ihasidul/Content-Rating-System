@@ -96,20 +96,20 @@
 
                     <button name="user_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">GENERAL USER LIST</button><br>
                     <button name="critic_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">CRITICS LIST</button><br>
-                    <button class="m-3 p-2 btn btn-primary">CONTENT CREATOR LIST</button><br>
-                    <button class="m-3 p-2 btn btn-primary">CONTENT LIST</button><br>
-                    <button class="m-3 p-2 btn btn-primary">REGISTER CRITIC</button><br>
+                    <button name="contentCreator_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">CONTENT CREATOR LIST</button><br>
+                    <button name="contentList_table_div" class="m-3 p-2 btn btn-primary">CONTENT LIST</button><br>
+                    <button name="registerCritic_table_div" class="m-3 p-2 btn btn-primary" onclick="toggleTable(this.name);">REGISTER CRITIC</button><br>
 
 
                 </div>
             </div>
 
             <div class="mr-auto ml-2 col-md-8">
-
+                <!-- here is user table -->
                 <div name="important_tables" class="mt-5" id="user_table_div">
 
                     <div>
-                        <h2 class="display-6">General User Dashboard</h2><br>
+                        <h2 class="display-6">General User List</h2><br>
                     </div>
 
 
@@ -134,10 +134,11 @@
 
 
                 </div>
+                <!-- Here is Critic table -->
                 <div name="important_tables" class="mt-5" id="critic_table_div">
 
                     <div>
-                        <h2 class="display-6">Critic Dashboard</h2><br>
+                        <h2 class="display-6">Critic List</h2><br>
                     </div>
 
 
@@ -159,8 +160,61 @@
                         </tbody>
                     </table>
 
+                </div>
+                <!-- here is Register Critic list -->
+                <div name="important_tables" class="mt-5" id="user_table_div">
+
+                    <div>
+                        <h2 class="display-6">General User List</h2><br>
+                    </div>
 
 
+                    <table id="registerCirtic_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="CourseTable">
+                            <!-- User table goes here. -->
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+                <!-- Here is Content Creator Table -->
+                <div name="important_tables" class="mt-5" id="contentCreator_table_div">
+
+                    <div>
+                        <h2 class="display-6">Content Creator List</h2><br>
+                    </div>
+
+
+                    <table id="contentCreator_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="CourseTable">
+                            <!-- User table goes here. -->
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -227,6 +281,58 @@
         ],
     }, );
 
+    var tableRegisetCritic = $('#registerCritic_table').DataTable({
+        "ajax": {
+            "url": "getAllPendingCritic",
+        },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3, ]
+        }],
+
+        "columns": [{
+                "data": "User ID"
+            },
+            {
+                "data": "Name"
+            },
+            {
+                "data": "Email"
+            },
+            {
+                "data": "Phone"
+            },
+
+        ],
+    }, );
+
+    var tableContentCreator = $('#contentCreator_table').DataTable({
+        "ajax": {
+            "url": "getAllContentCreator",
+        },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3, ]
+        }],
+
+
+        "columns": [{
+                "data": "User ID"
+            },
+            {
+                "data": "Name"
+            },
+            {
+                "data": "Email"
+            },
+            {
+                "data": "Phone"
+            },
+        ],
+    }, );
+
     function toggleTable(id) {
         console.log(document.getElementsByName('important_tables'));
 
@@ -240,8 +346,8 @@
     $('#search').on('keyup', function() {
         tableGU.search(this.value).draw();
         tableCritic.search(this.value).draw();
-        table.search(this.value).draw();
-        table.search(this.value).draw();
+        tableContentCreator.search(this.value).draw();
+        tableRegisetCritic.search(this.value).draw();
         table.search(this.value).draw();
     });
 </script>
