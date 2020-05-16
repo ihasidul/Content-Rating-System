@@ -118,4 +118,21 @@ class ContentModel
             echo "0 results";
         }
     }
+
+    public function getTopVideoContent() //send the id and postreName of top Natoks
+    {
+        $sql = "SELECT id,posterName FROM content WHERE type='Video content' ORDER BY rating DESC LIMIT 5"; //this will give top 5 movies
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $top[] =  array("ID" => $row["id"], "PosterName" => $row["posterName"]);
+            }
+            return $top;
+        } else {
+            echo "0 results";
+        }
+    }
 }
