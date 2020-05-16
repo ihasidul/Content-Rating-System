@@ -2,6 +2,7 @@
 // print_r($data['TopFiveMovies']['ID']);
 
 $topMovies = $data["TopFiveMovies"];
+$topNatoks = $data["TopFiveNatoks"];
 //var_dump($topMovies);
 $ids = [];
 $posters = [];
@@ -14,6 +15,37 @@ foreach ($topMovies as $movie) {
     $ids[] = $movie["ID"];
     $posters[] = $movie["PosterName"];
 }
+
+// function getIds($data)
+// {
+//     foreach ($data as $movie) {
+//         // var_dump($movie);
+//         // echo "<br>";
+//         // echo "MOVIE ID: " . $movie["ID"];
+//         // echo "POSHTAR: " . $movie["PosterName"];
+//         // echo "<br>";
+//         $ids[] = $movie["ID"];
+//         return $ids;
+//     }
+// }
+// function getPosterNames($data)
+// {
+//     foreach ($data as $element) {
+//         // var_dump($movie);
+//         // echo "<br>";
+//         // echo "MOVIE ID: " . $movie["ID"];
+//         // echo "POSHTAR: " . $movie["PosterName"];
+//         // echo "<br>";
+//         $names[] = $element["PosterName"];
+//         return $names;
+//     }
+// }
+// $natokIds[] = getIds($data["TopFiveNatoks"]);
+// $natokPosterNames[] = getPosterNames($data["TopFiveNatoks"]);
+// echo "eije dekhi";
+// for ($i = 0; $i < 5; $i++) {
+//     echo $natokIds[$i];
+// }
 
 ?>
 <!DOCTYPE html>
@@ -74,7 +106,7 @@ foreach ($topMovies as $movie) {
             </div>
             <div class="col-md-8   overflow-auto" style="height: 100%;">
 
-                <h2> New Movies</h2>
+                <h2> Top Movies</h2>
                 <MARQUEE SCROLLDELAY=50>
                     <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
                     <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
@@ -83,37 +115,32 @@ foreach ($topMovies as $movie) {
                     <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
-                <h2> New Natoks</h2>
-                <marquee behavior="ALTERNATE" direction="left">
-                    <a href="http://localhost/bach.php"><img src="../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/vhalobasha101.php"> <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/bokhate.php"><img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/lol.php"><img src="../../../public/resources/poster/4.jpg" height="300px" width="200px"></a>
+                <h2> Top Natoks</h2>
+                <MARQUEE SCROLLDELAY=50>
+                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
-                <h2> New Tv Series</h2>
-                <marquee behavior="ALTERNATE" direction="left">
-                    <a href="http://localhost/bach.php"><img src="../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/vhalobasha101.php"> <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/bokhate.php"><img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/lol.php"><img src="../../../public/resources/poster/4.jpg" height="300px" width="200px"></a>
-                </marquee>
-                <br>
-                <h2> New Short Films</h2>
-                <marquee behavior="ALTERNATE" direction="left">
-                    <a href="http://localhost/bach.php"><img src="../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/vhalobasha101.php"> <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/bokhate.php"><img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/lol.php"><img src="../../../public/resources/poster/4.jpg" height="300px" width="200px"></a>
-                </marquee>
-                <br>
-                <h2> New Video Contents</h2>
-                <marquee behavior="ALTERNATE" direction="left">
-                    <a href="http://localhost/bach.php"><img src="../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/vhalobasha101.php"> <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/bokhate.php"><img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost/lol.php"><img src="../../../public/resources/poster/4.jpg" height="300px" width="200px"></a>
-                </marquee>
+                <h2> Top Tv Series</h2>
+                <<MARQUEE SCROLLDELAY=50>
+                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    </marquee>
+                    <br>
+                    <h2> Top Video Contents</h2>
+                    <MARQUEE SCROLLDELAY=50>
+                        <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                        <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    </marquee>
 
             </div>
 
