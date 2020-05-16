@@ -5,8 +5,8 @@ class ContentController extends Controller
     public function index()
     {
         $data = [
-            "AdminName" => $_SESSION['id'],
-            "Password" => $_SESSION['password'],
+            "Id" => $_SESSION['id'],
+            "Password" => $_SESSION['password']
 
         ];
         $this->view("ContentCreator/ContentCreatorView", $data);
@@ -15,6 +15,14 @@ class ContentController extends Controller
     public function content($content_id)
     {
         //get Content Using content_id from Content Model 
-        $content_id;
+        $modelObj = $this->model(['ContentModel']);
+        $modelObj->getContentInfoById($content_id);
+        $data = [
+            // "Id" => $_SESSION['id'],
+            // "Password" => $_SESSION['password'],
+            // "ContentId" => $content_id
+        ];
+
+        $this->view("ContentView", $data);
     }
 }

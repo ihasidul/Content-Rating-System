@@ -119,6 +119,14 @@ class ContentModel
         }
     }
 
+    public function getContentInfoById($content_id)
+    {
+        $sql = "SELECT * FROM content WHERE id =''" . $content_id . "'' "; //this will give top 5 movies
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+    }
+
     public function getTopVideoContent() //send the id and postreName of top Natoks
     {
         $sql = "SELECT id,posterName FROM content WHERE type='Video content' ORDER BY rating DESC LIMIT 5"; //this will give top 5 movies
