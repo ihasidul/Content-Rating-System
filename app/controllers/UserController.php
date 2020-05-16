@@ -26,5 +26,11 @@ class UserController extends Controller
         $topMovies = $contentObj->getTopNatoks();
         return $topMovies;
     }
+    public function getTopTvSeries()
+    {
+        $contentObj = $this->model('ContentModel');
+        $topMovies = $contentObj->getTopTvSeries();
+        return $topMovies;
+    }
 }
 ?>
