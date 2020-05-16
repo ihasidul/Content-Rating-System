@@ -2,67 +2,54 @@
 require_once INCLUDES . "DataAccess.php";
 class ContentModel
 {
-    public $contentid;
-    public $contentname;
+    public $id;
+    public $contentCreator;
+    public $name;
     public $type;
     public $genre;
-    public $poster;
-    public $link;
-    public $castinfo;
+    public $posterName;
+    public $cast;
     public $date;
+    public $link;
+    public $userRating;
+    public $criticRating;
 
 
 
-    public function setContentInfo($contentid, $contentname, $type, $genre, $poster, $link, $castinfo, $date)
+    public function getLatestAutoId() //this will get latest auto id of login table
     {
-        $this->id = $contentid;
-        $this->name = $contentname;
+        $sql = "SELECT MAX(id) AS autoId FROM content";
+        $db =  new DataAccess();
+        $result = $db->getData($sql);
+
+
+        while ($row = $result->fetch_assoc()) {
+            $data =  $row['autoId'];
+        }
+        return $data;
+    }
+
+
+    public function setContentInfo($contentCreator, $name, $type, $genre, $posterName, $cast, $date, $link, $userRating, $criticRating)
+    {
+        $this->contentCreator = $contentCreator;
+        $this->name = $name;
         $this->type = $type;
         $this->genre = $genre;
-        $this->poster = $poster;
-        $this->link = $link;
-        $this->castinfo = $castinfo;
+        $this->posterName = $posterName;
+        $this->cast = $cast;
         $this->date = $date;
-    }
-    public function getCid()
-    {
-        return $this->id;
-    }
-    public function getCname()
-    {
-        return $this->name;
-    }
-    public function getCtype()
-    {
-        return $this->type;
-    }
-    public function getCgenre()
-    {
-        return $this->genre;
-    }
-    public function getCposter()
-    {
-        return $this->poster;
-    }
-    public function getClink()
-    {
-        return $this->link;
-    }
-    public function getCcast()
-    {
-        return $this->castinfo;
-    }
-    public function getCdate()
-    {
-        return $this->date;
+        $this->link = $link;
+        $this->userRating = $userRating;
+        $this->criticRating = $criticRating;
     }
 
-    public function insertContent($contentid, $contentname, $type, $genre, $poster, $link, $castinfo, $date)
+    public function insertContent($contentCreator, $name, $type, $genre, $posterName, $cast, $date, $link, $userRating, $criticRating)
     {
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into content (contentid,contentname,type,genre,poster,link,castinfo,date) values ('" . $contentid . "','" . $contentname . "','" . $type . "','" . $genre . "','" . $poster . "','" . $link . "','" . $castinfo . "','" . $date . "');";
+            $sql = "insert into content (content_creator,name,type,genere,posterName,cast,date,rating,criticRating,link) values ('" . $contentCreator . "','" . $name . "','" . $type . "','" . $genre . "','" . $posterName . "','" . $cast . "','" . $date . "','" . $userRating . "','" . $criticRating . "','" . $link . "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -79,6 +66,22 @@ class ContentModel
             $db->executeQuery($sql);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function getTopMovies()
+    {
+        $sql = "SELECT id,posterName FROM content WHERE type='Movie' ORDER BY rating DESC LIMIT 5"; //this will give top 5 movies
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $topMovies[] =  array("ID" => $row["id"], "PosterName" => $row["posterName"]);
+            }
+            return $topMovies;
+        } else {
+            echo "0 results";
         }
     }
 }
