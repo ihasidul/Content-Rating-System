@@ -5,18 +5,6 @@ $topMovies = $data["TopFiveMovies"];
 $topNatoks = $data["TopFiveNatoks"];
 $topTvSerieses = $data["TopFiveTvSerieses"];
 $topVideoContents = $data["TopFiveVideoContents"];
-//var_dump($topMovies);
-// $ids = [];
-// $posters = [];
-// foreach ($topMovies as $movie) {
-//     var_dump($movie);
-//     // echo "<br>";
-//     // echo "MOVIE ID: " . $movie["ID"];
-//     // echo "POSHTAR: " . $movie["PosterName"];
-//     // echo "<br>";
-//     $ids[] = $movie["ID"];
-//     $posters[] = $movie["PosterName"];
-// }
 
 
 ?>
@@ -72,46 +60,47 @@ $topVideoContents = $data["TopFiveVideoContents"];
         <div class="row h-100 ">
             <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgba(128, 240, 147, 0)  ;">
                 <div class="col " align="center">
-                    <a name="watch_list" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light">Watch list </a><br>
-                    <a name="profile" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
+                    <a name="watch_list" href="../UserController/index" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light">Home</a><br>
+                    <a name="watch_list" id="side_links" class="m-3 m-3  p-2 btn btn-block btn-light">Watch list </a><br>
+                    <a name="profile" href="" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
                 </div>
             </div>
-            <div class="col-md-8   overflow-auto" style="height: 100%;">
+            <div class="col-md-8 overflow-auto" style="height: 100%;">
 
                 <h2> Top Movies</h2>
-                <MARQUEE SCROLLDELAY=50>
-                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
-                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[2]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[3]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                <MARQUEE SCROLLDELAY=5>
+                    <a href="../ContentController/content/<?= $topMovies[0]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topMovies[1]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="../ContentController/content/<?= $topMovies[2]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topMovies[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topMovies[3]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topMovies[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topMovies[4]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
                 <h2> Top Natoks</h2>
-                <MARQUEE SCROLLDELAY=50>
-                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[0]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[1]['PosterName'] ?>" height="300px" width="200px"></a>
-                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[2]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[3]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topNatoks[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                <MARQUEE SCROLLDELAY=10>
+                    <a href="../ContentController/content/<?= $topNatoks[0]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topNatoks[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topNatoks[1]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topNatoks[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="../ContentController/content/<?= $topNatoks[2]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topNatoks[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topNatoks[3]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topNatoks[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topNatoks[4]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topNatoks[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
                 <h2> Top Tv Series</h2>
-                <<MARQUEE SCROLLDELAY=50>
-                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topTvSerieses[0]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topTvSerieses[1]['PosterName'] ?>" height="300px" width="200px"></a>
-                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topTvSerieses[2]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topTvSerieses[3]['PosterName'] ?>" height="300px" width="200px"> </a>
-                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topTvSerieses[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                <<MARQUEE SCROLLDELAY=30>
+                    <a href="../ContentController/content/<?= $topTvSerieses[0]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topTvSerieses[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topTvSerieses[1]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topTvSerieses[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="../ContentController/content/<?= $topTvSerieses[2]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topTvSerieses[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topTvSerieses[3]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topTvSerieses[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="../ContentController/content/<?= $topTvSerieses[4]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topTvSerieses[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                     </marquee>
                     <br>
                     <h2> Top Video Contents</h2>
-                    <MARQUEE SCROLLDELAY=50>
-                        <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topVideoContents[0]['PosterName'] ?>" height="300px" width="200px"> </a>
-                        <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topVideoContents[1]['PosterName'] ?>" height="300px" width="200px"></a>
-                        <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topVideoContents[2]['PosterName'] ?>" height="300px" width="200px"> </a>
-                        <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topVideoContents[3]['PosterName'] ?>" height="300px" width="200px"> </a>
-                        <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topVideoContents[4]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <MARQUEE SCROLLDELAY=10>
+                        <a href="../ContentController/content/<?= $topVideoContents[0]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="../ContentController/content/<?= $topVideoContents[1]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                        <a href="../ContentController/content/<?= $topVideoContents[2]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="../ContentController/content/<?= $topVideoContents[3]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                        <a href="../ContentController/content/<?= $topVideoContents[4]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                     </marquee>
 
             </div>
