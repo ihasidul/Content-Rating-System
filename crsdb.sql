@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 07:09 PM
+-- Generation Time: May 16, 2020 at 12:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -54,19 +54,19 @@ CREATE TABLE `content` (
   `name` varchar(40) NOT NULL,
   `type` varchar(40) NOT NULL,
   `genre` varchar(40) NOT NULL,
-  `poster` varchar(80) NOT NULL,
-  `link` varchar(80) NOT NULL,
+  `posterName` varchar(80) NOT NULL,
   `cast` varchar(40) NOT NULL,
   `date` date NOT NULL,
-  `ratting` double NOT NULL
+  `ratting` double NOT NULL,
+  `criticratting` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`id`, `content_creator`, `name`, `type`, `genre`, `poster`, `link`, `cast`, `date`, `ratting`) VALUES
-('conent-1', 'cc-123', 'creator', 'movie', 'thriller', 'image.png', '..../..../../..', 'cast_name', '2020-05-13', 0);
+INSERT INTO `content` (`id`, `content_creator`, `name`, `type`, `genre`, `posterName`, `cast`, `date`, `ratting`, `criticratting`) VALUES
+('conent-1', 'cc-123', 'Aynabaji', 'movie', 'thriller', 'aynabaji.jpg', 'castinfo', '2020-05-13', 8, 7.8);
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,7 @@ CREATE TABLE `contentcreator` (
 INSERT INTO `contentcreator` (`name`, `id`, `email`, `phone`) VALUES
 ('habib', 'cc-098', 'asd@a.com', '0134990332'),
 ('Marques Brownlee', 'cc-7', 'mkbhd@gmail.com', '01987655628'),
+('akkas', 'cc-9', 'akkas2@gami.com', '1243254'),
 ('Jeson', 'cc-999', 'jj@gam.com', '098765432');
 
 -- --------------------------------------------------------
@@ -110,7 +111,8 @@ CREATE TABLE `critics` (
 INSERT INTO `critics` (`name`, `id`, `email`, `phone`) VALUES
 ('critic ', 'c-123', 'c@gmail.com', '0124'),
 ('Martin luther ', 'c-6', 'martin00@gamail.com', '01927308430'),
-('James', 'c-777', 'james@gamil.com', '099876545678');
+('James', 'c-777', 'james@gamil.com', '099876545678'),
+('kamal ', 'c-8', 'kamal@gmail.com', '23542354');
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,9 @@ INSERT INTO `login` (`id`, `password`, `permission`, `autoId`) VALUES
 ('u-3', '123', 'user', 3),
 ('u-4', '123', 'user', 4),
 ('c-6', '123', 'user', 6),
-('cc-7', '123', 'user', 7);
+('cc-7', '123', 'user', 7),
+('c-8', '123', 'user', 8),
+('cc-9', '1234', 'user', 9);
 
 -- --------------------------------------------------------
 
@@ -229,7 +233,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `autoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `autoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
