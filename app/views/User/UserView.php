@@ -3,49 +3,21 @@
 
 $topMovies = $data["TopFiveMovies"];
 $topNatoks = $data["TopFiveNatoks"];
+$topTvSeries = $data["TopFiveTvSeries"];
+$topVideoContent = $data["TopFiveVideoContent"];
 //var_dump($topMovies);
-$ids = [];
-$posters = [];
-foreach ($topMovies as $movie) {
-    var_dump($movie);
-    // echo "<br>";
-    // echo "MOVIE ID: " . $movie["ID"];
-    // echo "POSHTAR: " . $movie["PosterName"];
-    // echo "<br>";
-    $ids[] = $movie["ID"];
-    $posters[] = $movie["PosterName"];
-}
+// $ids = [];
+// $posters = [];
+// foreach ($topMovies as $movie) {
+//     var_dump($movie);
+//     // echo "<br>";
+//     // echo "MOVIE ID: " . $movie["ID"];
+//     // echo "POSHTAR: " . $movie["PosterName"];
+//     // echo "<br>";
+//     $ids[] = $movie["ID"];
+//     $posters[] = $movie["PosterName"];
+// }
 
-// function getIds($data)
-// {
-//     foreach ($data as $movie) {
-//         // var_dump($movie);
-//         // echo "<br>";
-//         // echo "MOVIE ID: " . $movie["ID"];
-//         // echo "POSHTAR: " . $movie["PosterName"];
-//         // echo "<br>";
-//         $ids[] = $movie["ID"];
-//         return $ids;
-//     }
-// }
-// function getPosterNames($data)
-// {
-//     foreach ($data as $element) {
-//         // var_dump($movie);
-//         // echo "<br>";
-//         // echo "MOVIE ID: " . $movie["ID"];
-//         // echo "POSHTAR: " . $movie["PosterName"];
-//         // echo "<br>";
-//         $names[] = $element["PosterName"];
-//         return $names;
-//     }
-// }
-// $natokIds[] = getIds($data["TopFiveNatoks"]);
-// $natokPosterNames[] = getPosterNames($data["TopFiveNatoks"]);
-// echo "eije dekhi";
-// for ($i = 0; $i < 5; $i++) {
-//     echo $natokIds[$i];
-// }
 
 ?>
 <!DOCTYPE html>
