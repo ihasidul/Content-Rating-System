@@ -61,7 +61,7 @@
                     <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/1.jpg" height="300px" width="200px"> </a>
                     <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid   ' ?>" target="__blank"> <img src="../resources/poster/<?= 'phpArray' ?>" height="300px" width="200px"></a>
                     <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/4.jpg" height="300px" width="200px"> </a>
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/10.jfif" height="300px" width="200px"> </a>
                     <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../../../public/resources/poster/5.jpg" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
