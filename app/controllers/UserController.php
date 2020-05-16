@@ -10,6 +10,7 @@ class UserController extends Controller
             "Password" => $_SESSION['password'],
             "TopFiveMovies" => $this->getTopMovies()
         ];
+        // Top Movies: [0] => [Movie id, postername]
         $this->view("User/UserView", $data);
     }
 
@@ -17,6 +18,12 @@ class UserController extends Controller
     {
         $contentObj = $this->model('ContentModel');
         $topMovies = $contentObj->getTopMovies();
+        return $topMovies;
+    }
+    public function getTopNatoks()
+    {
+        $contentObj = $this->model('ContentModel');
+        $topMovies = $contentObj->getTopNatoks();
         return $topMovies;
     }
 }
