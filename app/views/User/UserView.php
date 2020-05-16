@@ -1,10 +1,28 @@
+<?php
+// print_r($data['TopFiveMovies']['ID']);
+
+$topMovies = $data["TopFiveMovies"];
+//var_dump($topMovies);
+$ids = [];
+$posters = [];
+foreach ($topMovies as $movie) {
+    var_dump($movie);
+    // echo "<br>";
+    // echo "MOVIE ID: " . $movie["ID"];
+    // echo "POSHTAR: " . $movie["PosterName"];
+    // echo "<br>";
+    $ids[] = $movie["ID"];
+    $posters[] = $movie["PosterName"];
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Admin Dashboard</title>
+    <title>User Landing Page</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.css" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -58,11 +76,11 @@
 
                 <h2> New Movies</h2>
                 <MARQUEE SCROLLDELAY=50>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/1.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid   ' ?>" target="__blank"> <img src="../resources/poster/<?= 'phpArray' ?>" height="300px" width="200px"></a>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/3.jpg" height="300px" width="200px"> </a>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../resources/poster/10.jfif" height="300px" width="200px"> </a>
-                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank"> <img src="../../../public/resources/poster/5.jpg" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[0]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[0]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[1]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[1]['PosterName'] ?>" height="300px" width="200px"></a>
+                    <a href="ContentController/content/<?= $topMovies[2]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[2]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[3]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[3]['PosterName'] ?>" height="300px" width="200px"> </a>
+                    <a href="ContentController/content/<?= $topMovies[4]['ID'] ?>" target="__blank"> <img src="../resources/poster/<?php echo $topMovies[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                 </marquee>
                 <br>
                 <h2> New Natoks</h2>
