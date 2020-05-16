@@ -22,7 +22,7 @@
 
         html,
         body {
-            background-image: url("../../../public/resources/q.png");
+            background-image: url("../../../public/resources/back2.jpg");
             height: 100%;
         }
 
@@ -33,7 +33,11 @@
         }
         h2{
             color:rgb(248, 245, 245); 
-            background-color: rgb(128, 240, 146);
+            background-color: rgb(91, 92, 91);
+        }
+        #side_links{
+            background-color: rgb(91, 92, 91);
+            color: wheat;
         }
         .sidebar {
          position: -webkit-sticky;
@@ -77,24 +81,24 @@
 
     <div class="h-100">
         <div class="row h-100 ">
-            <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgb(128, 240, 146)  ;">
+            <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgba(128, 240, 147, 0)  ;">
                 <div class="col " align="center">
-                    <button name="user_table_div" class="m-3 mt-5  p-2 btn btn-block btn-light" >Watch list </button><br>
-                    <button name="critic_table_div" class="m-3 p-2 btn btn-block btn-light"  >Profile</button><br>
+                    <a name="watch_list" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light" >Watch list </a><br>
+                    <a name="profile" id="side_links" class="m-3 p-2 btn btn-block btn-light"  >Profile</a><br>
                 </div>
             </div>
             <div class="col-md-8   overflow-auto" style="height: 100%;">
                 
-                <h2 style="color:rgb(248, 245, 245); background-color: rgb(128, 240, 146);"> New Movies</h2>
+                <h2 > New Movies</h2>
                 <MARQUEE SCROLLDELAY=50>
-                    <a href="http://localhost/ndorai.php">         <img src= "../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a> 
-                    <a href="http://localhost/jdiekdin.php">       <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"></a> 
-                    <a href="http://localhost/aynabaji.php">       <img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>              
-                    <a href="http://localhost/rate.php">         <img src= "../../../public/resources/poster/4.jpg" height="300px" width="200px">  </a>
-                    <a href="http://localhost/television.php">    <img src= "../../../public/resources/poster/5.jpg" height="300px" width="200px"> </a>    
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank">         <img src= "../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a> 
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank">       <img src="../../../public/resources/poster/2.jpg" height="300px" width="200px"></a> 
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank">       <img src="../../../public/resources/poster/3.jpg" height="300px" width="200px"> </a>              
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank">         <img src= "../../../public/resources/poster/4.jpg" height="300px" width="200px">  </a>
+                    <a href="http://localhost:8080/Content-Rating-System/public/ContentController/content/<?= 'stupid' ?>" target="__blank">    <img src= "../../../public/resources/poster/5.jpg" height="300px" width="200px"> </a>    
                 </marquee>    
                 <br>
-                <h2 style="color:rgb(248, 245, 245); background-color: rgb(128, 240, 146);"> New Natoks</h2>
+                <h2 > New Natoks</h2>
                 <marquee behavior="ALTERNATE" direction="left">
                     <a href="http://localhost/bach.php"><img src= "../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
                     <a href="http://localhost/vhalobasha101.php"> <img src= "../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
@@ -102,7 +106,7 @@
                     <a href="http://localhost/lol.php"><img src= "../../../public/resources/poster/4.jpg" height="300px" width="200px"></a>
                 </marquee>
                 <br>
-                <h2 style="color:rgb(248, 245, 245); background-color: rgb(128, 240, 146);"> New Tv Series</h2>
+                <h2> New Tv Series</h2>
                 <marquee behavior="ALTERNATE" direction="left">
                     <a href="http://localhost/bach.php"><img src= "../../../public/resources/poster/1.jpg" height="300px" width="200px"> </a>
                     <a href="http://localhost/vhalobasha101.php"> <img src= "../../../public/resources/poster/2.jpg" height="300px" width="200px"> </a>
