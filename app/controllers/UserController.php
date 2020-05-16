@@ -10,8 +10,8 @@ class UserController extends Controller
             "Password" => $_SESSION['password'],
             "TopFiveMovies" => $this->getTopMovies(),
             "TopFiveNatoks" => $this->getTopNatoks(),
-            "TopFiveTvSeries" => $this->getTopTvSeries(),
-            "TopFiveVideoContent" => $this->getTopVideoContent()
+            "TopFiveTvSerieses" => $this->getTopTvSeries(),
+            "TopFiveVideoContents" => $this->getTopVideoContent()
         ];
         // Top Movies: [0] => [Movie id, postername]
         $this->view("User/UserView", $data);
