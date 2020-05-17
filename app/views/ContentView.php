@@ -1,10 +1,19 @@
+<?php
+$content = $data["Content"];
+print_r($content);
+echo "Test data";
+echo $content[0]['Link'];
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Admin Dashboard</title>
+    <title>Content Page</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.css" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -99,19 +108,26 @@
                 <div class="w-100 h-100">
                     <div class="row">
                         <div class="col-xs-auto">
-                            <img class="mt-5 p-2" src="https://i.pinimg.com/originals/ab/2f/a2/ab2fa2a5256097eb9cab5c6c9025215e.jpg" alt="" height="300px" width="200px">
+                            <img class="mt-5 p-2" src="../resources/poster/<?php echo $content[0]['Name']; ?>" alt="" height="300px" width="200px">
                         </div>
 
                         <div class="col-xl-auto">
                             <div class="">
-                                <h1 class="display">TODO: Movie Name</h1>
-                                <h3 class="display float-right">TODO: Rating</h3>
+                                <h1 class="display"><?php echo $content[0]['Name']; ?></h1>
+                                <h3 class="display float-right">User's Rating:<?php echo $content[0]['Rating']; ?></h3>
+                                <br>
+                                <h3 class="display float-right">Critic's Rating:<?php echo $content[0]['CriticRating']; ?></h3>
                                 <div class="row ml-2">
-                                    <h6>TODO: Duration</h6>
-                                    <h6>TODO: Category</h6>
-                                    <h6>TODO: Release Date</h6>
+                                    <h6>Genre : <?php echo $content[0]['Genre']; ?></h6>
+                                    <h6>Category: <?php echo $content[0]['Type']; ?></h6>
+                                    <h6>Release:<?php echo $content[0]['Date']; ?></h6>
                                 </div>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/hA6hldpSTF8?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="http://www.youtube.com/embed/<?php
+                                                                                                    $url = $content[0]["Link"];
+                                                                                                    //used regex to get the pattern
+                                                                                                    preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+                                                                                                    $youtube_id = $match[1];
+                                                                                                    echo $youtube_id; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                 <div>
                                     <div class="container">
