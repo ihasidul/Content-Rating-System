@@ -14,14 +14,23 @@ class ContentController extends Controller
 
     public function content($content_id)
     {
-        //get Content Using content_id from Content Model 
-        $modelObj = $this->model(['ContentModel']);
-        $modelObj->getContentInfoById($content_id);
+
+        $contentObj = $this->model('ContentModel');
+        $content = $contentObj->getContentInfoById((int) $content_id);
+        $comments = $contentObj->getComments((int) $content_id);
+        //echo $content_id;
+        //echo var_dump($content_id);
+        //new
+
+        //  echo $content;
+        // return $topMovies;
         $data = [
-            // "Id" => $_SESSION['id'],
-            // "Password" => $_SESSION['password'],
-            // "ContentId" => $content_id
+            "Id" => $_SESSION['id'],
+            "Password" => $_SESSION['password'],
+            "Content" => $content,
+            "Comments" => $comments
         ];
+
 
         $this->view("ContentView", $data);
     }
