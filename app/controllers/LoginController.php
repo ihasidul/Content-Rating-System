@@ -33,6 +33,7 @@ class LoginController extends Controller
                     //not here yet
                     $_SESSION["id"] = $user->id;
                     $_SESSION["password"] = $user->password;
+                    $_SESSION["First"] = "";
 
 
 
@@ -44,7 +45,7 @@ class LoginController extends Controller
                         switch ($user->getPermissionType($user->id, $user->password)) {
                             case "admin":
                                 //echo " after permission done";
-                                header("Location: ../AdminController/index");
+                                header("Location: ../A  dminController/index");
                                 break; //break is needed.Otherwise it will break
                             case "user":
                                 header("Location: ../UserController/index");
@@ -128,7 +129,37 @@ class LoginController extends Controller
                 $loginObj->insertUser($id, $_POST['user_password'], "user");
             }
         }
-        header("Location: ../index");
+
+        echo "Registration successful. Loggin you in automatically...";
+        echo "Credentials: " . $id . " Password: " . $_POST['user_password'];
+        //sleep(5);
+
+        header("Location: autoLogin/" . $id . '/' . $_POST['user_password']);
+    }
+
+    public function autoLogin($id, $password)
+    {
+        $user = $this->model('LoginModel');
+        $user->setId($id);
+        $user->setPassword($password);
+        $_SESSION["id"] = $id;
+        $_SESSION["password"] = $password;
+        $_SESSION["First"] = "First";
+        switch ($user->getPermissionType($user->id, $user->password)) {
+            case "admin":
+                //echo " after permission done";
+                header("Location: ../../../AdminController/index");
+                break; //break is needed.Otherwise it will break
+            case "user":
+                header("Location: ../../../UserController/index");
+                break;
+            case "critic":
+                header("Location: ../../../CriticController/index");
+                break;
+            case "contentCreator":
+                header("Location: ../../../ContentCreatorController/index");
+                break;
+        }
     }
 
     public function logout()
