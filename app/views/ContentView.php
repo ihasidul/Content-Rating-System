@@ -1,7 +1,8 @@
 <?php
 $content = $data["Content"];
-
-
+$comments = $data["Comments"];
+// echo $comments[0]["Comments"];
+$movies = $data["Movies"];
 
 ?>
 
@@ -19,8 +20,9 @@ $content = $data["Content"];
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.js"></script>
     <!--<script src="../includes/AdminTables.js"></script> -->
-    <link href="./star-rating.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="./star-rating.js" type="text/javascript"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
     <style>
         .back-to-top {
@@ -33,7 +35,7 @@ $content = $data["Content"];
 
         html,
         body {
-            background-image: url("../../../public/resources/back2.jpg");
+            /* background-image: url("../../../public/resources/back2.jpg"); */
             height: 100%;
         }
 
@@ -67,6 +69,10 @@ $content = $data["Content"];
         .star-rating .fa-star {
             color: green;
         }
+
+        /* #previous_comments {
+            color: white;
+        } */
     </style>
 
 </head>
@@ -84,8 +90,15 @@ $content = $data["Content"];
                 <ul class="navbar-nav mr-auto ml-auto">
                     <li class="nav-item ml-auto mx-sm-5">
                         <form class="form-inline my-1 my-lg-0">
-                            <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
-
+                            <!-- <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search"> -->
+                            <select id="movies_search" name="movies[]" onchange="redirectMovie(this.value)">
+                                <option value="NONE" disabled selected>Search...</option>
+                                <?php
+                                foreach ($movies as $movie) {
+                                    echo '<option value=' . $movie["ID"] . '>' . $movie["MovieName"] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </form>
                     </li>
                 </ul>
@@ -104,7 +117,7 @@ $content = $data["Content"];
 
     <div class="h-100">
         <div class="row h-100">
-            <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgba(128, 240, 147, 0)  ;">
+            <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgb(38,35,53)  ;">
                 <div class="col " align="center">
                     <a name="watch_list" href="../../UserController/index" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light">Home</a><br>
 
@@ -123,10 +136,12 @@ $content = $data["Content"];
                         <div class="col-xl-auto">
                             <div class="">
                                 <h1 class="display"><?php echo $content[0]['Name']; ?></h1>
-                                <h6 class="display float-right">User's Rating:<?php echo $content[0]['Rating']; ?></h6>
+                                <div class="col-md-5 float-right">
 
-                                <h6 class="display float-right">Critic's Rating:<?php echo $content[0]['CriticRating']; ?></h6>
-                                <div class="row ml-2">
+                                    <h5 class="display">User's Rating:<?php echo $content[0]['Rating']; ?>/10</h5>
+                                    <h5 class="display">Critic's Rating:<?php echo $content[0]['CriticRating']; ?>/10</h5>
+                                </div>
+                                <div class="ml-2">
                                     <h6>Genre : <?php echo $content[0]['Genre']; ?></h6>
                                     <h6>Category: <?php echo $content[0]['Type']; ?></h6>
                                     <h6>Release:<?php echo $content[0]['Date']; ?></h6>
@@ -139,43 +154,65 @@ $content = $data["Content"];
                                                                                                     echo $youtube_id; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                 <div>
-                                    <div class="container">
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="star-rating">
-                                                    <span class="fa fa-star-o" data-rating="1"></span>
-                                                    <span class="fa fa-star-o" data-rating="2"></span>
-                                                    <span class="fa fa-star-o" data-rating="3"></span>
-                                                    <span class="fa fa-star-o" data-rating="4"></span>
-                                                    <span class="fa fa-star-o" data-rating="5"></span>
-
-                                                    <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                    <form action="../submitUserRatingAndComment" method="post">
+                                        <input type="hidden" name="content_id" value="<?= $data["ContentID"]; ?>">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <h5>Rate:</h5>
+                                                    <div class="star-rating">
+                                                        <span class="fa fa-star-o" data-rating="1"></span>
+                                                        <span class="fa fa-star-o" data-rating="2"></span>
+                                                        <span class="fa fa-star-o" data-rating="3"></span>
+                                                        <span class="fa fa-star-o" data-rating="4"></span>
+                                                        <span class="fa fa-star-o" data-rating="5"></span>
+                                                        <span class="fa fa-star-o" data-rating="6"></span>
+                                                        <span class="fa fa-star-o" data-rating="7"></span>
+                                                        <span class="fa fa-star-o" data-rating="8"></span>
+                                                        <span class="fa fa-star-o" data-rating="9"></span>
+                                                        <span class="fa fa-star-o" data-rating="10"></span>
+                                                        <input type="hidden" name="rating" class="rating-value" value="0">
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
+                                        <div class="row p-3">
+                                            <h6 class="mr-2">Comment: </h6>
 
-                                    </div>
-                                    <div class="row p-3">
-                                        <h6 class="mr-2">Comment: </h6>
-                                        <textarea name="" id="" cols="40" rows="2"></textarea>
-                                    </div>
+                                            <textarea name="comment" id="" cols="40" rows="2"></textarea>
+                                            <button type="submit" class="btn ml-2 btn-primary ">Post Comment</button>
 
-                                    <div class="row p-3">
-                                        <h6 class="mr-2">Previous Comments: </h6>
+                                        </div>
+                                    </form>
+
+                                    <div class=" p-3" id="previous_comments">
+                                        <h5 class="mr-2">Previous Comments: </h5>
+                                        <?php
+                                        // $comments = $data["Comments"];
+                                        // for ($i = 0, $len = count($comments[]["Comments"]); $i < $len; $i++) {
+                                        //     echo '
+                                        //               <h5>' . $comments[$i]["Comments"] . '</h5>    
+                                        //             ';
+                                        // }
+
+                                        foreach ($comments as $comment) {
+                                            echo '<div class="ml-3 mb-1 border border-info">';
+                                            echo '<h3>' . $comment["UserId"] . '</h3>';
+                                            echo '<h5 class="ml-3">' . $comment["Comments"] . '</h5>';
+                                            echo '</div>';
+                                            //var_dump($comment);
+                                        }
+                                        ?>
+
+
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
-
-
                     </div>
-
-
                 </div>
-
             </div>
         </div>
 
@@ -184,6 +221,9 @@ $content = $data["Content"];
 </body>
 
 <script>
+    function redirectMovie(contentId) {
+        window.location.href = `./${contentId}`;
+    }
     var $star_rating = $('.star-rating .fa');
 
     var SetRatingStar = function() {
@@ -204,6 +244,10 @@ $content = $data["Content"];
     SetRatingStar();
     $(document).ready(function() {
 
+    });
+
+    $(document).ready(function() {
+        $('#movies_search').select2();
     });
 </script>
 
