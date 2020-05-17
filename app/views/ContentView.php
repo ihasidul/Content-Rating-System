@@ -1,8 +1,8 @@
 <?php
 $content = $data["Content"];
-print_r($content);
-echo "Test data";
-echo $content[0]['Link'];
+
+
+
 ?>
 
 
@@ -58,6 +58,15 @@ echo $content[0]['Link'];
             position: sticky;
             top: 0;
         }
+
+        .star-rating {
+            line-height: 32px;
+            font-size: 1.25em;
+        }
+
+        .star-rating .fa-star {
+            color: green;
+        }
     </style>
 
 </head>
@@ -85,7 +94,7 @@ echo $content[0]['Link'];
                         <h4><?php echo $_SESSION["id"]; ?></h4>
                     </li>
                     <li class="nav-item active">
-                        <a class="btn btn-primary mr-3" href="../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
+                        <a class="btn btn-primary mr-3" href="../../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
@@ -108,15 +117,15 @@ echo $content[0]['Link'];
                 <div class="w-100 h-100">
                     <div class="row">
                         <div class="col-xs-auto">
-                            <img class="mt-5 p-2" src="../resources/poster/<?php echo $content[0]['Name']; ?>" alt="" height="300px" width="200px">
+                            <img class="mt-5 p-2" src="../../resources/poster/<?php echo $content[0]['PosterName']; ?>" alt="" height="300px" width="200px">
                         </div>
 
                         <div class="col-xl-auto">
                             <div class="">
                                 <h1 class="display"><?php echo $content[0]['Name']; ?></h1>
-                                <h3 class="display float-right">User's Rating:<?php echo $content[0]['Rating']; ?></h3>
-                                <br>
-                                <h3 class="display float-right">Critic's Rating:<?php echo $content[0]['CriticRating']; ?></h3>
+                                <h6 class="display float-right">User's Rating:<?php echo $content[0]['Rating']; ?></h6>
+
+                                <h6 class="display float-right">Critic's Rating:<?php echo $content[0]['CriticRating']; ?></h6>
                                 <div class="row ml-2">
                                     <h6>Genre : <?php echo $content[0]['Genre']; ?></h6>
                                     <h6>Category: <?php echo $content[0]['Type']; ?></h6>
@@ -131,9 +140,22 @@ echo $content[0]['Link'];
 
                                 <div>
                                     <div class="container">
-                                        Rating: https://codepen.io/alisuarez/pen/RWGNLm
-                                    </div>
 
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="star-rating">
+                                                    <span class="fa fa-star-o" data-rating="1"></span>
+                                                    <span class="fa fa-star-o" data-rating="2"></span>
+                                                    <span class="fa fa-star-o" data-rating="3"></span>
+                                                    <span class="fa fa-star-o" data-rating="4"></span>
+                                                    <span class="fa fa-star-o" data-rating="5"></span>
+
+                                                    <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     <div class="row p-3">
                                         <h6 class="mr-2">Comment: </h6>
                                         <textarea name="" id="" cols="40" rows="2"></textarea>
@@ -142,30 +164,47 @@ echo $content[0]['Link'];
                                     <div class="row p-3">
                                         <h6 class="mr-2">Previous Comments: </h6>
                                     </div>
-
-
                                 </div>
                             </div>
+
                         </div>
+
+
 
                     </div>
 
 
-
                 </div>
 
-
             </div>
-
         </div>
-    </div>
 
     </div>
 
 </body>
 
 <script>
-    $("#input-").rating();
+    var $star_rating = $('.star-rating .fa');
+
+    var SetRatingStar = function() {
+        return $star_rating.each(function() {
+            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+                return $(this).removeClass('fa-star-o').addClass('fa-star');
+            } else {
+                return $(this).removeClass('fa-star').addClass('fa-star-o');
+            }
+        });
+    };
+
+    $star_rating.on('click', function() {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+        return SetRatingStar();
+    });
+
+    SetRatingStar();
+    $(document).ready(function() {
+
+    });
 </script>
 
 </html>
