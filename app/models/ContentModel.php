@@ -121,10 +121,43 @@ class ContentModel
 
     public function getContentInfoById($content_id)
     {
-        $sql = "SELECT * FROM content WHERE id =''" . $content_id . "'' "; //this will give top 5 movies
+        $sql = "SELECT * FROM content WHERE id = '{$content_id}'"; //this will give top 5 movies
         $db = new DataAccess();
 
         $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $content[] = array(
+                    "ContentCreator" => $row["content_creator"],
+                    "Name" => $row["name"],
+                    "Type" => $row["type"],
+                    "Genre" => $row["genre"],
+                    "PosterName" => $row["posterName"],
+                    "Cast" => $row["cast"],
+                    "Date" => $row["date"],
+                    "Rating" => $row["rating"],
+                    "CriticRating" => $row["criticRating"],
+                    "Link" => $row["link"]
+                );
+            }
+            return $content;
+        }
+    }
+    public function getComments($content_id)
+    {
+        $sql = "SELECT * FROM watchlist WHERE contentId = '{$content_id}'"; //this will give top 5 movies
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $top[] =  array("UserId" => $row["userId"], "ContentId" => $row["contentId"], "Rating" => $row["rating"], "UserType" => $row["userType"], "comment" => $row["comment"]);
+            }
+            return $top;
+        } else {
+            echo "0 results";
+        }
     }
 
     public function getTopVideoContent() //send the id and postreName of top Natoks
