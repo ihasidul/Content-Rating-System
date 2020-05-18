@@ -156,38 +156,13 @@
                         </thead>
 
                         <tbody id="CourseTable">
-                            <!-- User table goes here. -->
+                            <!-- Critic table goes here. -->
 
                         </tbody>
                     </table>
 
                 </div>
-                <!-- here is Register Critic list -->
-                <div name="important_tables" class="mt-5" id="user_table_div">
 
-                    <div>
-                        <h2 class="display-6">Pending Critic List</h2><br>
-                    </div>
-
-
-                    <table id="registerCritic_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
-
-                        <thead>
-                            <tr>
-                                <th>User ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody id="CourseTable">
-                            <!-- User table goes here. -->
-
-                        </tbody>
-                    </table>
-                </div>
                 <!-- Here is Content Creator Table -->
                 <div name="important_tables" class="mt-5" id="contentCreator_table_div">
 
@@ -209,16 +184,16 @@
                         </thead>
 
                         <tbody id="CourseTable">
-                            <!-- User table goes here. -->
+                            <!-- content creator  table goes here. -->
 
                         </tbody>
                     </table>
                 </div>
-
+                <!-- here is content list -->
                 <div name="important_tables" class="mt-5" id="content_table_div">
 
                     <div>
-                        <h2 class="display-6">Content Creator List</h2><br>
+                        <h2 class="display-6">Content List</h2><br>
                     </div>
 
 
@@ -243,7 +218,7 @@
                         </thead>
 
                         <tbody id="CourseTable">
-                            <!-- User table goes here. -->
+                            <!--content table goes here table goes here. -->
 
                         </tbody>
                     </table>
@@ -313,31 +288,7 @@
         ],
     }, );
 
-    var tableRegisetCritic = $('#registerCritic_table').DataTable({
-        "ajax": {
-            "url": "getAllPendingCritic",
-        },
-        "autoWidth": false,
-        "columnDefs": [{
-            "width": "32%",
-            "targets": [0, 1, 2, 3, ]
-        }],
 
-        "columns": [{
-                "data": "User ID"
-            },
-            {
-                "data": "Name"
-            },
-            {
-                "data": "Email"
-            },
-            {
-                "data": "Phone"
-            },
-
-        ],
-    }, );
 
     var tableContentCreator = $('#contentCreator_table').DataTable({
         "ajax": {
@@ -364,6 +315,52 @@
             },
         ],
     }, );
+    var tableContent = $('#content_table').DataTable({
+        "ajax": {
+            "url": "getAllContent",
+        },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3]
+        }],
+
+
+        "columns": [{
+                "data": "Content Creator"
+            },
+            {
+                "data": "Id"
+            },
+            {
+                "data": "Content Name"
+            },
+            {
+                "data": "Type"
+            },
+            {
+                "data": "Genre"
+            },
+            {
+                "data": "Poster"
+            },
+            {
+                "data": "Cast"
+            },
+            {
+                "data": "Date"
+            },
+            {
+                "data": "User Rating"
+            },
+            {
+                "data": "Critic Rating"
+            },
+            {
+                "data": "Link"
+            },
+        ],
+    }, );
 
     function toggleTable(id) {
         console.log(document.getElementsByName('important_tables'));
@@ -379,7 +376,7 @@
         tableGU.search(this.value).draw();
         tableCritic.search(this.value).draw();
         tableContentCreator.search(this.value).draw();
-        tableRegisetCritic.search(this.value).draw();
+        tableContent.search(this.value).draw();
         table.search(this.value).draw();
     });
 </script>
