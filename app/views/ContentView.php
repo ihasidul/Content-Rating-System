@@ -195,13 +195,16 @@ $movies = $data["Movies"];
                                         //               <h5>' . $comments[$i]["Comments"] . '</h5>    
                                         //             ';
                                         // }
-
-                                        foreach ($comments as $comment) {
-                                            echo '<div class="ml-3 mb-1 border border-info">';
-                                            echo '<h3>' . $comment["UserId"] . '</h3>';
-                                            echo '<h5 class="ml-3">' . $comment["Comments"] . '</h5>';
-                                            echo '</div>';
-                                            //var_dump($comment);
+                                        if (empty($comments)) {
+                                            echo "No Comments found";
+                                        } else {
+                                            foreach ($comments as $comment) {
+                                                echo '<div class="ml-3 mb-1 border border-info">';
+                                                echo '<h3>' . $comment["UserId"] . '</h3>';
+                                                echo '<h5 class="ml-3">' . $comment["comment"] . '</h5>';
+                                                echo '</div>';
+                                                //var_dump($comment);
+                                            }
                                         }
                                         ?>
 

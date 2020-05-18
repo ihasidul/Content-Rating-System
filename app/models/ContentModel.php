@@ -28,6 +28,16 @@ class ContentModel
         }
         return $data;
     }
+    public function getAllMovies()
+    {
+        $sql = "SELECT id,name FROM content";
+        $db =  new DataAccess();
+        $result = $db->getData($sql);
+        while ($row = $result->fetch_assoc()) {
+            $Movies[] =  array("ID" => $row["id"], "MovieName" => $row["name"]);
+        }
+        return $Movies;
+    }
 
 
     public function setContentInfo($contentCreator, $name, $type, $genre, $posterName, $cast, $date, $link, $userRating, $criticRating)
@@ -156,9 +166,11 @@ class ContentModel
             }
             return $top;
         } else {
-            echo "0 results";
+            // echo "0 results";
         }
     }
+
+
 
     public function getTopVideoContent() //send the id and postreName of top Natoks
     {
@@ -175,5 +187,56 @@ class ContentModel
         } else {
             echo "0 results";
         }
+    }
+
+    public function insertCommentAndRating($contentId, $userId, $userType, $comment, $rating)
+    {
+        try {
+            //this function will be needing to insert user in login table
+            $sql = "insert into watchlist (userId,contentId,usertype,rating,comment) values ('" . $userId . "','" . $contentId . "','" . $userType . "','" . $rating . "','" . $comment . "');";
+            var_dump($sql);
+            $db =  new DataAccess();
+            $db->executeQuery($sql);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function getTotalRating($userType, $contentId) //this will sum up the total rating based on the user type
+    {
+        $sql = "SELECT SUM(rating) as value_sum FROM watchlist WHERE userType = '{$userType}' and contentId = '{$contentId}'"; //this will give top 5 movies
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sum = $row['value_sum'];
+        }
+        return $sum;
+    }
+    public function getTotalUser($userType, $contentId)
+    {
+        $sql = "SELECT *  FROM watchlist WHERE userType = '{$userType}' and contentId = '{$contentId}'"; //this will give top 5 movies
+        var_dump($sql);
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+        return $result->num_rows;
+    }
+    public function updateUserRating($contentId, $updatedRating)
+    {
+        $sql = "UPDATE content SET rating='{$updatedRating}' WHERE id ='{$contentId}'";
+        var_dump($sql);
+        $db = new DataAccess();
+
+        $db->executeQuery($sql);
+    }
+    public function updateCriticRating($contentId, $updatedRating)
+    {
+        $sql = "UPDATE content SET criticRating='{$updatedRating}' WHERE id ='{$contentId}'";
+        var_dump($sql);
+        $db = new DataAccess();
+
+        $db->executeQuery($sql);
     }
 }

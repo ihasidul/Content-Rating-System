@@ -46,43 +46,40 @@ class ContentController extends Controller
         echo $_POST["rating"];
         echo $_POST["content_id"];
         echo $_SESSION["id"];
-        $idType = explode("-", $_POST["id"]);
+        $idType = explode("-", $_SESSION["id"]);
         $idSubstring = $idType[0];
-       
-        if($idSubstring = "u")//This is user
+
+        if ($idSubstring == "u") //This is user
         {
             $userType = "user";
             $contentObj = $this->model('ContentModel');
 
-            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"],$userType, $_POST["comment"], $_POST["rating"]);
-        }
-        else if($idSubstring = "c")//This is user
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]); //watchlist
+
+            $updatedRating = $this->calculateRating($_POST["rating"], $userType, $_POST["content_id"]);
+            $updatedRating = round($updatedRating, 1);
+            $contentObj->updateUserRating($_POST["content_id"], $updatedRating); //content table
+        } else if ($idSubstring == "c") //This is user
         {
             $userType = "critic";
             $contentObj = $this->model('ContentModel');
 
-            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"],$userType, $_POST["comment"], $_POST["rating"]);
-        }
-
-
-
-               
-
-        if (user) {
-            $rating = $_POST["rating"];
-
-            $contentObj->updateUserRating($_POST["content_id"], $_POST["rating"]);
-        } else if (critic) {
-            $contentObj->updateCriticRating($_POST["content_id"], $_POST["rating"]);
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]);
+            $updatedRating = $this->calculateRating($_POST["rating"], $userType, $_POST["content_id"]);
+            $updatedRating = round($updatedRating, 1);
+            $contentObj->updateCriticRating($_POST["content_id"], $updatedRating);
         }
 
 
         header("Location: content/" . $_POST["content_id"]);
     }
 
-    public function calculateRating($rating)
+    public function calculateRating($postedRating, $userType, $contentId)
     {
         $contentObj = $this->model('ContentModel');
-        $contentObj->getTotalRating
+
+        $totalRating = $contentObj->getTotalRating($userType, $contentId);
+        $toatalUser = $contentObj->getTotalUser($userType, $contentId);
+        return $totalRating / $toatalUser;
     }
 }

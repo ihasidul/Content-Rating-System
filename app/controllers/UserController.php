@@ -5,13 +5,17 @@ class UserController extends Controller
     public function index()
     {
         // Return a 'view' or do nothing.
+        $contentObj = $this->model('ContentModel');
+        $movies = $contentObj->getAllMovies();
         $data = [
             "AdminName" => $_SESSION['id'],
             "Password" => $_SESSION['password'],
             "TopFiveMovies" => $this->getTopMovies(),
             "TopFiveNatoks" => $this->getTopNatoks(),
             "TopFiveTvSerieses" => $this->getTopTvSeries(),
-            "TopFiveVideoContents" => $this->getTopVideoContent()
+            "TopFiveVideoContents" => $this->getTopVideoContent(),
+            "First" => $_SESSION["First"],
+            "Movies" => $movies
         ];
         // Top Movies: [0] => [Movie id, postername]
         $this->view("User/UserView", $data);

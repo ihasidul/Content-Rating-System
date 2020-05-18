@@ -5,6 +5,7 @@ $topMovies = $data["TopFiveMovies"];
 $topNatoks = $data["TopFiveNatoks"];
 $topTvSerieses = $data["TopFiveTvSerieses"];
 $topVideoContents = $data["TopFiveVideoContents"];
+$movies = $data["Movies"];
 
 
 ?>
@@ -21,6 +22,10 @@ $topVideoContents = $data["TopFiveVideoContents"];
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.js"></script>
     <!--<script src="../includes/AdminTables.js"></script> -->
     <link rel="stylesheet" href="../css/userView.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 
 
 </head>
@@ -38,8 +43,14 @@ $topVideoContents = $data["TopFiveVideoContents"];
                 <ul class="navbar-nav mr-auto ml-auto">
                     <li class="nav-item ml-auto mx-sm-5">
                         <form class="form-inline my-1 my-lg-0">
-                            <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
-
+                            <select id="movies_search" name="movies[]" onchange="redirectMovie(this.value)">
+                                <option value="NONE" disabled selected>Search...</option>
+                                <?php
+                                foreach ($movies as $movie) {
+                                    echo '<option value=' . $movie["ID"] . '>' . $movie["MovieName"] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </form>
                     </li>
                 </ul>
@@ -102,6 +113,24 @@ $topVideoContents = $data["TopFiveVideoContents"];
                         <a href="../ContentController/content/<?= $topVideoContents[3]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[3]['PosterName'] ?>" height="300px" width="200px"> </a>
                         <a href="../ContentController/content/<?= $topVideoContents[4]['ID'] ?>" target="_self"> <img src="../resources/poster/<?php echo $topVideoContents[4]['PosterName'] ?>" height="300px" width="200px"> </a>
                     </marquee>
+                    <div id="first_time" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">First Time Login</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h1>This is Your ID: <?= $_SESSION["id"]; ?></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
             </div>
 
@@ -110,11 +139,21 @@ $topVideoContents = $data["TopFiveVideoContents"];
 
     </div>
 
+    <?php
+    if ($data["First"] == "First")
+        echo '<script>$(document).ready(function(){$("#first_time").modal("show");});</script>';
+    ?>
+
 </body>
 
 <script>
+    $(document).ready(function() {
+        $('#movies_search').select2();
+    });
 
-
+    function redirectMovie(contentId) {
+        window.location.href = `./../ContentController/content/${contentId}`;
+    }
 </script>
 
 </html>
