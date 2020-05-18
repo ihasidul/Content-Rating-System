@@ -46,8 +46,43 @@ class ContentController extends Controller
         echo $_POST["rating"];
         echo $_POST["content_id"];
         echo $_SESSION["id"];
-        $contentObj = $this->model('ContentModel');
-        $contentObj->updateCommentAndRating($_POST["content_id"], $_SESSION["id"], $_POST["comment"], $_POST["rating"]);
+        $idType = explode("-", $_POST["id"]);
+        $idSubstring = $idType[0];
+       
+        if($idSubstring = "u")//This is user
+        {
+            $userType = "user";
+            $contentObj = $this->model('ContentModel');
+
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"],$userType, $_POST["comment"], $_POST["rating"]);
+        }
+        else if($idSubstring = "c")//This is user
+        {
+            $userType = "critic";
+            $contentObj = $this->model('ContentModel');
+
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"],$userType, $_POST["comment"], $_POST["rating"]);
+        }
+
+
+
+               
+
+        if (user) {
+            $rating = $_POST["rating"];
+
+            $contentObj->updateUserRating($_POST["content_id"], $_POST["rating"]);
+        } else if (critic) {
+            $contentObj->updateCriticRating($_POST["content_id"], $_POST["rating"]);
+        }
+
+
         header("Location: content/" . $_POST["content_id"]);
+    }
+
+    public function calculateRating($rating)
+    {
+        $contentObj = $this->model('ContentModel');
+        $contentObj->getTotalRating
     }
 }
