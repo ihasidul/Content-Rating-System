@@ -59,4 +59,10 @@ class AdminController extends Controller
     {
         echo "Hoise toh hasidul eto dum ken";
     }
+
+    public function getAllContent()
+    {
+        $content = $this->model('ContentModel')->getAllContent();
+        echo json_encode(["data" => $content]);
+    }
 }

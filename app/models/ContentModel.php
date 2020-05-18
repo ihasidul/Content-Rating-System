@@ -28,6 +28,35 @@ class ContentModel
         }
         return $data;
     }
+
+    public function getAllContent()
+    {
+        $sql = "SELECT * FROM content";
+        $db =  new DataAccess();
+        $result = $db->getData($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $contents[] = array(
+                    "ContentCreator" => $row["content_creator"],
+                    "Name" => $row["name"],
+                    "Type" => $row["type"],
+                    "Genre" => $row["genre"],
+                    "PosterName" => $row["posterName"],
+                    "Cast" => $row["cast"],
+                    "Date" => $row["date"],
+                    "Rating" => $row["rating"],
+                    "CriticRating" => $row["criticRating"],
+                    "Id" => $row["id"],
+                    "Link" => $row["link"]
+                );
+            }
+            return $contents;
+        } else {
+            echo "THere is no contetn on the table";
+        }
+    }
     public function getAllMovies()
     {
         $sql = "SELECT id,name FROM content";

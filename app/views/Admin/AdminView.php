@@ -67,7 +67,7 @@
     </header>
 
     <div class="h-100">
-        <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a>
+        <!-- <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a> -->
         <div class="row h-100">
             <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
                 <div class="row " id="totalUserData">
@@ -205,6 +205,40 @@
                                 <th>Email</th>
                                 <th>Phone</th>
 
+                            </tr>
+                        </thead>
+
+                        <tbody id="CourseTable">
+                            <!-- User table goes here. -->
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div name="important_tables" class="mt-5" id="content_table_div">
+
+                    <div>
+                        <h2 class="display-6">Content Creator List</h2><br>
+                    </div>
+
+
+                    <table id="content_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+
+                        <thead>
+                            <tr>
+
+                                <th>Content Creator</th>
+                                <th>Id</th>
+                                <th>Content Name</th>
+                                <th>Type</th>
+                                <th>Genre</th>
+                                <th>Poster</th>
+                                <th>Cast</th>
+                                <th>Date</th>
+                                <th>User Rating</th>
+                                <th>Critic Rating</th>
+                                <th>Link</th>
+                                <!-- Have not done the json part -->
                             </tr>
                         </thead>
 
