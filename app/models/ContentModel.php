@@ -162,9 +162,9 @@ class ContentModel
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
-                $top[] =  array("UserId" => $row["userId"], "ContentId" => $row["contentId"], "Rating" => $row["rating"], "UserType" => $row["userType"], "comment" => $row["comment"]);
+                $allFromWatchlist[] =  array("UserId" => $row["userId"], "ContentId" => $row["contentId"], "Rating" => $row["rating"], "UserType" => $row["userType"], "comment" => $row["comment"]);
             }
-            return $top;
+            return $allFromWatchlist;
         } else {
             // echo "0 results";
         }
@@ -217,7 +217,7 @@ class ContentModel
     public function getTotalUser($userType, $contentId)
     {
         $sql = "SELECT *  FROM watchlist WHERE userType = '{$userType}' and contentId = '{$contentId}'"; //this will give top 5 movies
-        var_dump($sql);
+        //var_dump($sql);
         $db = new DataAccess();
 
         $result = $db->getData($sql);
@@ -238,5 +238,20 @@ class ContentModel
         $db = new DataAccess();
 
         $db->executeQuery($sql);
+    }
+
+    public function ifUserCommented($userId, $contentId)
+    {
+        $sql = "SELECT *  FROM watchlist WHERE userId = '{$userId}' and contentId = '{$contentId}'"; //this will give top 5 movies
+        //var_dump($sql);
+        $db = new DataAccess();
+        $result = $db->getData($sql);
+        if ($result->num_rows > 0) {
+            // echo "I am in row 1 er beshi";
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

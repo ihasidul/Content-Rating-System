@@ -3,6 +3,22 @@ $content = $data["Content"];
 $comments = $data["Comments"];
 // echo $comments[0]["Comments"];
 $movies = $data["Movies"];
+$disabled = "";
+$user_comment = "Enter a comment";
+$user_rating = 0;
+
+if (empty($comments)) {
+    echo "No Comments found";
+} else {
+    foreach ($comments as $comment) {
+        if ($comment["UserId"] == $_SESSION["id"]) {
+            // echo "This user has already commented";
+            $disabled = "disabled";
+            $user_comment = $comment["comment"];
+            $user_rating = $comment["Rating"];
+        }
+    }
+}
 
 ?>
 
@@ -154,7 +170,7 @@ $movies = $data["Movies"];
                                                                                                     echo $youtube_id; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                 <div>
-                                    <form action="../submitUserRatingAndComment" method="post">
+                                    <form name="comment_form" action="../submitUserRatingAndComment" onsubmit="return validateForm()" method="post">
                                         <input type="hidden" name="content_id" value="<?= $data["ContentID"]; ?>">
                                         <div class="container">
                                             <div class="row">
@@ -171,7 +187,7 @@ $movies = $data["Movies"];
                                                         <span class="fa fa-star-o" data-rating="8"></span>
                                                         <span class="fa fa-star-o" data-rating="9"></span>
                                                         <span class="fa fa-star-o" data-rating="10"></span>
-                                                        <input type="hidden" name="rating" class="rating-value" value="0">
+                                                        <input type="hidden" name="rating" class="rating-value" value="<?= $user_rating; ?>" <?= $disabled ?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,8 +196,8 @@ $movies = $data["Movies"];
                                         <div class="row p-3">
                                             <h6 class="mr-2">Comment: </h6>
 
-                                            <textarea name="comment" id="" cols="40" rows="2"></textarea>
-                                            <button type="submit" class="btn ml-2 btn-primary ">Post Comment</button>
+                                            <textarea name="comment" id="" cols="40" rows="2" <?= $disabled ?>></textarea>
+                                            <button type="submit" class="btn ml-2 btn-primary" <?= $disabled ?>>Post Comment</button>
 
                                         </div>
                                     </form>
@@ -189,6 +205,7 @@ $movies = $data["Movies"];
                                     <div class=" p-3" id="previous_comments">
                                         <h5 class="mr-2">Previous Comments: </h5>
                                         <?php
+
                                         // $comments = $data["Comments"];
                                         // for ($i = 0, $len = count($comments[]["Comments"]); $i < $len; $i++) {
                                         //     echo '
@@ -199,7 +216,11 @@ $movies = $data["Movies"];
                                             echo "No Comments found";
                                         } else {
                                             foreach ($comments as $comment) {
-                                                echo '<div class="ml-3 mb-1 border border-info">';
+                                                echo '<h5 class="float-right mr-3 mt-2">' . $comment["Rating"] . "/10" . '</h5>';
+                                                if ($comment["UserId"] == $_SESSION["id"])
+                                                    echo '<div class="ml-3 mb-1 border border-danger bg-warning">';
+                                                else
+                                                    echo '<div class="ml-3 mb-1 border border-info">';
                                                 echo '<h3>' . $comment["UserId"] . '</h3>';
                                                 echo '<h5 class="ml-3">' . $comment["comment"] . '</h5>';
                                                 echo '</div>';
@@ -252,6 +273,15 @@ $movies = $data["Movies"];
     $(document).ready(function() {
         $('#movies_search').select2();
     });
+
+    function validateForm() {
+        var comment = document.forms["comment_form"]["comment"].value;
+        var rating = document.forms["comment_form"]["rating"].value;
+        if (comment == "" || rating == 0) {
+            alert("Please submit a comment with rating.");
+            return false;
+        }
+    }
 </script>
 
 </html>

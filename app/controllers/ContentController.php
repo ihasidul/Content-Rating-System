@@ -23,6 +23,7 @@ class ContentController extends Controller
         //echo var_dump($content_id);
         //new
 
+
         //  echo $content;
         // return $topMovies;
         $data = [
@@ -48,6 +49,8 @@ class ContentController extends Controller
         echo $_SESSION["id"];
         $idType = explode("-", $_SESSION["id"]);
         $idSubstring = $idType[0];
+        $contentObj = $this->model('ContentModel');
+        $didUserComented = $contentObj->ifUserCommented($_SESSION["id"], $_POST["content_id"]);
 
         if ($idSubstring == "u") //This is user
         {
@@ -69,6 +72,8 @@ class ContentController extends Controller
             $updatedRating = round($updatedRating, 1);
             $contentObj->updateCriticRating($_POST["content_id"], $updatedRating);
         }
+
+
 
 
         header("Location: content/" . $_POST["content_id"]);
