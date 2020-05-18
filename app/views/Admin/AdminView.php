@@ -98,14 +98,14 @@
                     <button name="user_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">GENERAL USER LIST</button><br>
                     <button name="critic_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CRITICS LIST</button><br>
                     <button name="contentCreator_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT CREATOR LIST</button><br>
-                    <button name="contentList_table_div" class="m-3 p-2 btn btn-block btn-light">CONTENT LIST</button><br>
-                    <button name="registerCritic_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">REGISTER CRITIC</button><br>
+                    <button name="content_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT LIST</button><br>
+                    <!-- <button name="registerCritic_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">REGISTER CRITIC</button><br> -->
 
 
                 </div>
             </div>
 
-            <div class="mr-auto ml-2 col-md-8">
+            <div class="row-3 mr-auto ml-2 col-md-8">
                 <!-- here is user table -->
                 <div name="important_tables" class="mt-5" id="user_table_div">
 
