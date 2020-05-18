@@ -39,16 +39,16 @@ class ContentModel
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $contents[] = array(
-                    "ContentCreator" => $row["content_creator"],
-                    "Name" => $row["name"],
+                    "Content Creator" => $row["content_creator"],
+                    "Id" => $row["id"],
+                    "Content Name" => $row["name"],
                     "Type" => $row["type"],
                     "Genre" => $row["genre"],
-                    "PosterName" => $row["posterName"],
+                    "Poster" => $row["posterName"],
                     "Cast" => $row["cast"],
                     "Date" => $row["date"],
-                    "Rating" => $row["rating"],
-                    "CriticRating" => $row["criticRating"],
-                    "Id" => $row["id"],
+                    "User Rating" => $row["rating"],
+                    "Critic Rating" => $row["criticRating"],
                     "Link" => $row["link"]
                 );
             }
