@@ -9,7 +9,7 @@ class ContentController extends Controller
             "Password" => $_SESSION['password']
 
         ];
-        $this->view("", $data);
+        $this->view("ContentCreator/ContentCreatorView", $data);
     }
 
     public function content($content_id)

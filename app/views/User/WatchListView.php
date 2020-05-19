@@ -122,10 +122,10 @@ $WatchList = $data["Watchlist"];
 
     </div>
 
-    <?php
-    if ($data["First"] == "First")
-        echo '<script>$(document).ready(function(){$("#first_time").modal("show");});</script>';
-    ?>
+    <!-- <?php
+            // if ($data["First"] == "First")
+            //     echo '<script>$(document).ready(function(){$("#first_time").modal("show");});</script>';
+            ?> -->
 
 </body>
 

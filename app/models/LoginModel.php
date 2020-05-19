@@ -117,7 +117,7 @@ class LoginModel
             $db =  new DataAccess();
             $result = $db->getData($sql);
             if ($result->num_rows == 1) {
-                $permissionType = "";
+
                 while ($row = $result->fetch_assoc()) {
                     $permissionType .=  $row['permission'] . ""; //don't put space between "" here. It ruined a lot of my time
                     // echo "permission " . $row["permission"];
