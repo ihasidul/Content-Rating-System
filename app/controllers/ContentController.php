@@ -9,7 +9,7 @@ class ContentController extends Controller
             "Password" => $_SESSION['password']
 
         ];
-        $this->view("ContentCreator/ContentCreatorView", $data);
+        $this->view("", $data);
     }
 
     public function content($content_id)
@@ -33,6 +33,7 @@ class ContentController extends Controller
             "Comments" => $comments,
             "Movies" => $movies,
             "ContentID" => $content_id
+
         ];
 
 
@@ -46,6 +47,7 @@ class ContentController extends Controller
         echo $_POST["comment"];
         echo $_POST["rating"];
         echo $_POST["content_id"];
+
         echo $_SESSION["id"];
         $idType = explode("-", $_SESSION["id"]);
         $idSubstring = $idType[0];
@@ -57,7 +59,7 @@ class ContentController extends Controller
             $userType = "user";
             $contentObj = $this->model('ContentModel');
 
-            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]); //watchlist
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_POST["content_name"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]); //watchlist
 
             $updatedRating = $this->calculateRating($_POST["rating"], $userType, $_POST["content_id"]);
             $updatedRating = round($updatedRating, 1);
@@ -67,7 +69,7 @@ class ContentController extends Controller
             $userType = "critic";
             $contentObj = $this->model('ContentModel');
 
-            $contentObj->insertCommentAndRating($_POST["content_id"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]);
+            $contentObj->insertCommentAndRating($_POST["content_id"], $_POST["content_name"], $_SESSION["id"], $userType, $_POST["comment"], $_POST["rating"]);
             $updatedRating = $this->calculateRating($_POST["rating"], $userType, $_POST["content_id"]);
             $updatedRating = round($updatedRating, 1);
             $contentObj->updateCriticRating($_POST["content_id"], $updatedRating);

@@ -172,6 +172,7 @@ if (empty($comments)) {
                                 <div>
                                     <form name="comment_form" action="../submitUserRatingAndComment" onsubmit="return validateForm()" method="post">
                                         <input type="hidden" name="content_id" value="<?= $data["ContentID"]; ?>">
+                                        <input type="hidden" name="content_name" value="<?= $content[0]["Name"]; ?>">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-lg-12">

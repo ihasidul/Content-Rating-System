@@ -218,12 +218,13 @@ class ContentModel
         }
     }
 
-    public function insertCommentAndRating($contentId, $userId, $userType, $comment, $rating)
+    public function insertCommentAndRating($contentId, $contentName, $userId, $userType, $comment, $rating)
     {
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into watchlist (userId,contentId,usertype,rating,comment) values ('" . $userId . "','" . $contentId . "','" . $userType . "','" . $rating . "','" . $comment . "');";
+            $sql = "insert into watchlist (userId,contentId,contentName,usertype,rating,comment) values ('" . $userId . "','" . $contentId . "','" . $contentName . "','" . $userType . "','" . $rating . "','" . $comment . "');";
             var_dump($sql);
+            //throw new Exception($sql);
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -281,6 +282,23 @@ class ContentModel
             return true;
         } else {
             return false;
+        }
+    }
+    public function getWatchlistByUserId($userId)
+    {
+
+        $sql = "SELECT * FROM content INNER JOIN watchlist on watchlist.contentId = content.id WHERE watchlist.userId = '{$userId}'";
+        $db = new DataAccess();
+        $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                var_dump($row);
+                $allFromWatchlist[] =  array("Content Name" => $row["name"], "Content Creator" => $row["content_creator"], "Your Rating" => $row["user_rating"], "Your Comment" => $row["comment"], "User Rating" => $row["all_user_rating"], "Critic Rating" => $row["critic_rating"]);
+            }
+            return $allFromWatchlist;
+        } else {
+            // echo "0 results";
         }
     }
 }
