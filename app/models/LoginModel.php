@@ -38,13 +38,16 @@ class LoginModel
     }
 
 
-    function insertUser($id, $password, $permissionType)
+    function insertUser($id, $password, $permission)
     {
+        echo "i am in insert ";
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into login (id,password,permission) values ('" . $id . "','" . $password . "','" . $permissionType . "');";
+            $sql = "insert into login (id,password,permission) values ('" . $id . "','" . $password . "','" . $permission . "');";
+            var_dump($sql);
             $db =  new DataAccess();
+
             $db->executeQuery($sql);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

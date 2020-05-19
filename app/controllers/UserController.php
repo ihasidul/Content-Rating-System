@@ -8,7 +8,7 @@ class UserController extends Controller
         $contentObj = $this->model('ContentModel');
         $movies = $contentObj->getAllMovies();
         $data = [
-            "AdminName" => $_SESSION['id'],
+            "id" => $_SESSION['id'],
             "Password" => $_SESSION['password'],
             "TopFiveMovies" => $this->getTopMovies(),
             "TopFiveNatoks" => $this->getTopNatoks(),
@@ -44,6 +44,23 @@ class UserController extends Controller
         $contentObj = $this->model('ContentModel');
         $topMovies = $contentObj->getTopVideoContent();
         return $topMovies;
+    }
+    public function watchlistLoader()
+    {
+        $watchListData = [
+            "id" => $_SESSION['id'],
+            "Password" => $_SESSION['password'],
+
+        ];
+
+
+        $this->view("User/WatchlistView", $watchListData);
+    }
+    public function getWatchListInfo($userId)
+    {
+        $contentObj = $this->model('ContentModel');
+        $watchlist = $contentObj->getWatchlistByUserId($userId);
+        return $watchlist;
     }
 }
 ?>

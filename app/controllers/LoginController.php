@@ -45,7 +45,7 @@ class LoginController extends Controller
                         switch ($user->getPermissionType($user->id, $user->password)) {
                             case "admin":
                                 //echo " after permission done";
-                                header("Location: ../A  dminController/index");
+                                header("Location: ../AdminController/index");
                                 break; //break is needed.Otherwise it will break
                             case "user":
                                 header("Location: ../UserController/index");
@@ -102,21 +102,22 @@ class LoginController extends Controller
                 $userObj = $this->model('UserModel');
                 $id = $this->makeId($_POST['user_type']);
                 //insertUser($name, $id, $email, $phone)
-                $userObj->insertUser($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
+                $userObj->insertUser($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']); //userTable
                 $loginObj = $this->model('LoginModel');
                 //insertUser($id, $password, $permissionType)
-                $loginObj->insertUser($id, $_POST['user_password'], "user");
+                $loginObj->insertUser($id, $_POST['user_password'], "user"); //login table
+
             } else if ($_POST["user_type"] == "contentCreator") {
                 //write content Creator object using post data
 
-                $userObj = $this->model('ContentCreatorModel');
+                $contentCreatorObj = $this->model('ContentCreatorModel');
                 //function insertContentCreator($name, $id, $email, $phone)
                 $id = $this->makeId($_POST['user_type']);
-                //insertUser($name, $id, $email, $phone)
-                $userObj->insertContentCreator($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
                 $loginObj = $this->model('LoginModel');
                 //insertUser($id, $password, $permissionType)
-                $loginObj->insertUser($id, $_POST['user_password'], "user");
+                $loginObj->insertUser($id, $_POST['user_password'], "contentCreator");
+                //insertUser($name, $id, $email, $phone)
+                $contentCreatorObj->insertContentCreator($_POST['user_name'], $id, $_POST['user_email'], $_POST['user_phone']);
             } else if ($_POST["user_type"] == "critic") {
                 //write content critic object using post data
                 $userObj = $this->model('CriticModel');

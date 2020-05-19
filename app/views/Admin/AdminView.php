@@ -242,9 +242,17 @@
         },
         "autoWidth": false,
         "columnDefs": [{
-            "width": "32%",
-            "targets": [0, 1, 2, 3]
-        }],
+                "width": "32%",
+                "targets": [0, 1, 2, 3],
+                "data": null,
+                "defaultContent": "<button>Click!</button>"
+            },
+            {
+                "targets": -1,
+                "data": null,
+                "defaultContent": "<button>Click!</button>"
+            },
+        ],
 
 
         "columns": [{
@@ -372,6 +380,7 @@
 
     }
 
+    //this is for searching 
     $('#search').on('keyup', function() {
         tableGU.search(this.value).draw();
         tableCritic.search(this.value).draw();
@@ -379,6 +388,11 @@
         tableContent.search(this.value).draw();
         table.search(this.value).draw();
     });
+    //this is for bytton code
+    // $('#general_user_table tbody').on('click', 'button', function() {
+    //     var data = table.row($(this).parents('tr')).data();
+    //     alert(data[0] + "'s salary is: " + data[5]);
+    // });
 </script>
 
 </html>
