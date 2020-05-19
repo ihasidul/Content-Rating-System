@@ -152,6 +152,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Delete User</th>
 
                             </tr>
                         </thead>
@@ -180,6 +181,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Delete User</th>
 
                             </tr>
                         </thead>
@@ -278,7 +280,7 @@
         "autoWidth": false,
         "columnDefs": [{
             "width": "32%",
-            "targets": [0, 1, 2, 3, ]
+            "targets": [0, 1, 2, 3, 4]
         }],
 
         "columns": [{
@@ -292,6 +294,10 @@
             },
             {
                 "data": "Phone"
+            },
+            {
+                "data": null,
+                "defaultContent": `<button  type="button" class="btn btn-danger">Delete</button>`
             },
 
         ],
@@ -306,7 +312,7 @@
         "autoWidth": false,
         "columnDefs": [{
             "width": "32%",
-            "targets": [0, 1, 2, 3, ]
+            "targets": [0, 1, 2, 3, 4]
         }],
 
 
@@ -321,6 +327,10 @@
             },
             {
                 "data": "Phone"
+            },
+            {
+                "data": null,
+                "defaultContent": `<button  type="button" class="btn btn-danger">Delete</button>`
             },
         ],
     }, );
@@ -408,6 +418,27 @@
 
         $.ajax({
             url: "deleteContentFormUserTable/" + userId,
+            success: function(result) {
+                console.log(result);
+                alert("User" + userId + " is deleted");
+                location = location;
+            }
+
+        });
+
+        console.log(data);
+    });
+    $('#critic_table').on('click', 'button', function() {
+        var data = tableCritic.row(this).data();
+        console.log(data);
+        if (data === undefined) {
+            data = tableCritic.row($(this).parents('tr')).data();
+        }
+        console.log(data);
+        var userId = data["User ID"];
+
+        $.ajax({
+            url: "deleteCriticFromCriticTable/" + userId,
             success: function(result) {
                 console.log(result);
                 alert("User" + userId + " is deleted");

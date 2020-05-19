@@ -74,4 +74,8 @@ class AdminController extends Controller
         $this->model('UserModel')->deleteUser($userId);
         // $this->model('LoginMode')->deleteUser($userId); //baki ase
     }
+    public function deleteCriticFromCriticTable($userId)
+    {
+        $this->model('CriticModel')->deleteCritic($userId);
+    }
 }
