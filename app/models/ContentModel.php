@@ -95,14 +95,15 @@ class ContentModel
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function deleteContentCreator($contentid)
+    public function deleteContent($contentId)
     {
 
         try {
-            //this function will be needing to insert user in login table
-            $sql = "delete from content where id='" . $contentid . "'";
+            //this will be needing to delete content from content  table
+            $sql = "delete from content where id='" . $contentId . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
+            $sql = "delete from watchlist where contentId='" . $contentId . "'";
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

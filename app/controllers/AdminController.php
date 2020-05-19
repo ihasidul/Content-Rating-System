@@ -6,7 +6,7 @@ class AdminController extends Controller
     {
 
         $data = [
-            "AdminName" => $_SESSION['id'],
+            "Id" => $_SESSION['id'],
             "Password" => $_SESSION['password'],
             "totalCritic" => $this->getTotalNumberOfCritic(),
             "totalUser" => $this->getTotalNumberOfUser(),
@@ -64,5 +64,10 @@ class AdminController extends Controller
     {
         $content = $this->model('ContentModel')->getAllContent();
         echo json_encode(["data" => $content]);
+    }
+    public function deleteContentFromContentTable($contentId)
+    {
+        $this->model('ContentModel')->deleteContent($contentId); //baki ase 
+
     }
 }
