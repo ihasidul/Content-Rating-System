@@ -78,4 +78,8 @@ class AdminController extends Controller
     {
         $this->model('CriticModel')->deleteCritic($userId);
     }
+    public function deleteContentCreatorFormContentCreatorTable($userId)
+    {
+        $this->model('ContentCreatorModel')->deleteContentCreator($userId);
+    }
 }

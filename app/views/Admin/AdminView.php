@@ -77,6 +77,7 @@
                             <th>Total Users</th>
                             <th>Total Critics</th>
                             <th>Total ContentCreators</th>
+
                         </thead>
                         <tbody>
                             <td> <?php
@@ -428,6 +429,7 @@
 
         console.log(data);
     });
+    //this is for delete button on critic table
     $('#critic_table').on('click', 'button', function() {
         var data = tableCritic.row(this).data();
         console.log(data);
@@ -449,6 +451,31 @@
 
         console.log(data);
     });
+
+    //this is for delete button on Content Creator  table
+    $('#contentCreator_table').on('click', 'button', function() {
+        var data = tableContentCreator.row(this).data();
+        console.log(data);
+        if (data === undefined) {
+            data = tableContentCreator.row($(this).parents('tr')).data();
+        }
+        console.log(data);
+        var userId = data["User ID"];
+
+        $.ajax({
+            url: "deleteContentCreatorFormContentCreatorTable/" + userId,
+            success: function(result) {
+                console.log(result);
+                alert("User" + userId + " is deleted");
+                location = location;
+            }
+
+        });
+
+        console.log(data);
+    });
+
+
 
     //this is for button action on content table
     $('#content_table tbody').on('click', 'button', function() {

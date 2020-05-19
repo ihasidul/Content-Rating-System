@@ -68,6 +68,10 @@ class ContentCreatorModel
             $sql = "delete from contentcreator where id='" . $id . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
+            $sql1 = "delete from login  where id='" . $id . "'";
+            var_dump($sql1);
+            $db1 =  new DataAccess();
+            $db1->executeQuery($sql1);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
