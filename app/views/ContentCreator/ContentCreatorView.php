@@ -1,86 +1,190 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/contentCreatorView.css">
-<title>Content List</title>
 
-<body>
-    <ul>
-        <li><a class="active" href="LoginView.php">Content Rating Site</a></li>
-        <li><input class="search" type="search" placeholder="Search.." name="search"> </input></li>
-        <li><button id="icon" type="submit"><i class="fa fa-search"></i></button></li>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.css" />
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.js"></script>
+    <!--<script src="../includes/AdminTables.js"></script> -->
 
+    <style>
+        .back-to-top {
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
 
-        <div class="dropdown" style="float:right;">
+        html,
+        body {
+            height: 100%;
+        }
 
-            <button style="width:250px;" class="dropbtn">Menu</button>
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: right;
+            visibility: hidden;
+        }
+    </style>
+    <script>
 
-            <div class="dropdown-content">
-                <a href="UploadContentView.php" id="rcorners1">Upload Content</a> <br>
-                <a href="ContentListView.php" id="rcorners1">Content List</a><br>
-                <a href="ContentCreatorProfileView.php" id="rcorners1">Profile</a><br>
-                <a href="#" id="rcorners1">Log Out</a><br>
+    </script>
+</head>
+
+<body style="background-color:#E4F1F2 ">
+    <header>
+        <nav class="navbar sticky-top navbar-expand-lg navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Content-Rating-System</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ml-auto">
+                    <li class="nav-item ml-auto mx-sm-5">
+                        <form class="form-inline my-1 my-lg-0">
+                            <input id="search" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
+
+                        </form>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item active">
+                        <a class="btn btn-primary mr-3" href="../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </ul>
+        </nav>
+    </header>
+
+    <div class="h-100">
+        <!-- <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a> -->
+        <div class="row h-100">
+            <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
+                <div class="row " id="totalUserData">
+
+                </div>
+
+                <div class="col " align="center">
+                    <button name="content_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT LIST</button><br>
+                    <button name="uploadcontent.php" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">UPLOAD CONTENT</button><br>
+                    <button name="profile" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CREATOR'S PROFILE</button><br>
+
+                </div>
+            </div>
+
+            <div class="mr-auto ml-2 col-md-8">
+
+                <!-- Here is ContentList Table -->
 
 
-    <table>
+                <div name="important_tables" class="mt-5" id="content_table_div">
+
+                    <div>
+                        <h1 class="display-6">Content List</h2><br>
+                    </div>
 
 
-        <tr>
-            <th>
+                    <table id="content_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
 
-
-                <div style="font-size:23px;" id="rcorners3">
-                    <lable style="font-size:23px;margin:-25% 5%">Content List</lable>
-
-
-                    <div style="font-size:17px;" id="rcorners2">
-
-                        <table id="content">
+                        <thead>
                             <tr>
-                                <th>Content Id</th>
+                                <th>Content Creator</th>
+                                <th>Id</th>
                                 <th>Content Name</th>
                                 <th>Type</th>
                                 <th>Genre</th>
+                                <th>Poster</th>
+                                <th>Cast</th>
                                 <th>Date</th>
-                                <th>Rating</th>
+                                <th>User Rating</th>
+                                <th>Critic Rating</th>
+                                <th>Link</th>
+                                <!-- Have not done the json part -->
                             </tr>
+                        </thead>
 
-
-                            <?php
-                            $conn = mysqli_connect("localhost", "root", "", "crsdb");
-                            // Check connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-                            $sql = "SELECT id, name, type , genre , date , ratting FROM content";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                // output data of each row
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>"
-                                        . $row["type"] . "</td><td>" . $row["genre"] . "</td><td>" . $row["date"] . "</td><td>" . $row["ratting"] . "</td></tr>";
-                                }
-                                echo "</table>";
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </table>
-
-                    </div>
-
+                    </table>
                 </div>
-                </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
+
 </body>
+
+<script>
+    $(document).ready(function() {
+        for (var i = 0; i < document.getElementsByName('important_tables').length; i++) {
+            document.getElementsByName('important_tables')[i].style.display = "none";
+        }
+        document.getElementById('content_table_div').style.display = "inline";
+    });
+    var tableContentList = $('#content_table').DataTable({
+        "ajax": {
+            "url": "getAllContent",
+        },
+        "autoWidth": false,
+        "columnDefs": [{
+            "width": "32%",
+            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }],
+
+
+        "columns": [{
+                "data": "ID"
+            },
+            {
+                "data": "Creator Name"
+            },
+            {
+                "data": "Content Name"
+            },
+            {
+                "data": "Type"
+            },
+            {
+                "data": "Genre"
+            },
+            {
+                "data": "Poster"
+            },
+            {
+                "data": "Cast"
+            },
+            {
+                "data": "Date"
+            },
+            {
+                "data": "User Ratting"
+            },
+            {
+                "data": "Critic Rating"
+            },
+        ],
+    }, );
+
+
+    function toggleTable(id) {
+        console.log(document.getElementsByName('important_tables'));
+
+        for (var i = 0; i < document.getElementsByName('important_tables').length; i++) {
+            document.getElementsByName('important_tables')[i].style.display = "none";
+        }
+        document.getElementById(id).style.display = "inline";
+
+    }
+
+    $('#search').on('keyup', function() {
+        tableContentList.search(this.value).draw();
+
+    });
+</script>
 
 </html>
