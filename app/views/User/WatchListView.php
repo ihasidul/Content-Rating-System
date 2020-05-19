@@ -166,6 +166,10 @@ $WatchList = $data["Watchlist"];
         window.location.href = `./../ContentController/content/${contentId}`;
     }
     //this is for searching 
+    $('#search').on('keyup', function() {
+        tableWatchlist.search(this.value).draw();
+
+    });
 </script>
 
 </html>
