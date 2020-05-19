@@ -67,7 +67,11 @@ class AdminController extends Controller
     }
     public function deleteContentFromContentTable($contentId)
     {
-        $this->model('ContentModel')->deleteContent($contentId); //baki ase 
-
+        $this->model('ContentModel')->deleteContent($contentId);
+    }
+    public function deleteContentFormUserTable($userId)
+    {
+        $this->model('UserModel')->deleteUser($userId);
+        // $this->model('LoginMode')->deleteUser($userId); //baki ase
     }
 }

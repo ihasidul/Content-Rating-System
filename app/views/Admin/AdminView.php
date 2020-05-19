@@ -410,7 +410,7 @@
             url: "deleteContentFormUserTable/" + userId,
             success: function(result) {
                 console.log(result);
-                alert("User" + contentId + " is deleted");
+                alert("User" + userId + " is deleted");
                 location = location;
             }
 

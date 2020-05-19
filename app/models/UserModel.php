@@ -35,9 +35,13 @@ class UserModel
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "delete from user where id='" . $id . "'";
+            $sql = "delete from user  where id='" . $id . "'";
             $db =  new DataAccess();
             $db->executeQuery($sql);
+            $sql1 = "delete from login  where id='" . $id . "'";
+            var_dump($sql1);
+            $db1 =  new DataAccess();
+            $db1->executeQuery($sql1);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -63,7 +67,9 @@ class UserModel
             while ($row = mysqli_fetch_assoc($result)) {
                 $users[] =  array(
                     "User ID" => $row["id"],
-                    "Name" => $row["name"], "Email" => $row["email"], "Phone" => $row["phone"]
+                    "Name" => $row["name"],
+                    "Email" => $row["email"],
+                    "Phone" => $row["phone"]
                 );
             }
             return $users;

@@ -38,6 +38,7 @@ class LoginModel
     }
 
 
+
     function insertUser($id, $password, $permission)
     {
         echo "i am in insert ";
@@ -53,6 +54,17 @@ class LoginModel
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    // public function  deleteUser($id)
+    // {
+    //     try {
+    //         //this function will be needing to insert user in login table
+    //         $sql = "delete from login  where id='" . $id . "'";
+    //         $db =  new DataAccess();
+    //         $db->executeQuery($sql);
+    //     } catch (Exception $e) {
+    //         echo 'Caught exception: ',  $e->getMessage(), "\n";
+    //     }
+    // }
 
     public function getLatestAutoId() //this will get latest auto id of login table
     {
