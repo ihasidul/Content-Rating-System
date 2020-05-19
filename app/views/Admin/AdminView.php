@@ -213,6 +213,7 @@
                                 <th>User Rating</th>
                                 <th>Critic Rating</th>
                                 <th>Link</th>
+                                <th>Delete</th>
                                 <!-- Have not done the json part -->
                             </tr>
                         </thead>
@@ -330,7 +331,8 @@
         "autoWidth": false,
         "columnDefs": [{
             "width": "32%",
-            "targets": [0, 1, 2, 3]
+            "targets": [0, 1, 2, 3, 4],
+
         }],
 
 
@@ -367,6 +369,10 @@
             {
                 "data": "Link"
             },
+            {
+                "data": null,
+                "defaultContent": `<button  type="button" class="btn btn-danger">Delete</button>`
+            },
         ],
     }, );
 
@@ -380,19 +386,38 @@
 
     }
 
-    //this is for searching 
+    // this is
+    // for searching
     $('#search').on('keyup', function() {
         tableGU.search(this.value).draw();
         tableCritic.search(this.value).draw();
         tableContentCreator.search(this.value).draw();
         tableContent.search(this.value).draw();
-        table.search(this.value).draw();
+        // table.search(this.value).draw();
     });
-    //this is for bytton code
-    // $('#general_user_table tbody').on('click', 'button', function() {
-    //     var data = table.row($(this).parents('tr')).data();
-    //     alert(data[0] + "'s salary is: " + data[5]);
-    // });
+
+
+    //this is for button action
+    $('#content_table tbody').on('click', 'button', function() {
+        var data = tableContent.row(this).data();
+        if (data === undefined) {
+            data = tableContent.row($(this).parents('tr')).data();
+        }
+        //console.log(data["Id"]);
+        var contentId = data["Id"];
+
+        $.ajax({
+            url: "deleteContentFromContentTable/" + contentId,
+            success: function(result) {
+                console.log(result);
+                alert("Content " + contentId + " is deleted");
+                location = location;
+            }
+
+        });
+
+        console.log(data);
+    });
 </script>
 
 </html>
