@@ -122,6 +122,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Delete User</th>
 
                             </tr>
                         </thead>
@@ -213,7 +214,7 @@
                                 <th>User Rating</th>
                                 <th>Critic Rating</th>
                                 <th>Link</th>
-                                <th>Delete</th>
+                                <th>Delete Content</th>
                                 <!-- Have not done the json part -->
                             </tr>
                         </thead>
@@ -244,15 +245,10 @@
         "autoWidth": false,
         "columnDefs": [{
                 "width": "32%",
-                "targets": [0, 1, 2, 3],
-                "data": null,
-                "defaultContent": "<button>Click!</button>"
+                "targets": [0, 1, 2, 3, 4],
+
             },
-            {
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<button>Click!</button>"
-            },
+
         ],
 
 
@@ -267,6 +263,10 @@
             },
             {
                 "data": "Phone"
+            },
+            {
+                "data": null,
+                "defaultContent": `<button  type="button" class="btn btn-danger">Delete</button>`
             },
         ],
     }, );
@@ -396,10 +396,33 @@
         // table.search(this.value).draw();
     });
 
+    //this is for button action on General user table
+    $('#general_user_table tbody').on('click', 'button', function() {
+        var data = tableGU.row(this).data();
+        console.log(data);
+        if (data === undefined) {
+            data = tableGU.row($(this).parents('tr')).data();
+        }
+        console.log(data);
+        var userId = data["User ID"];
 
-    //this is for button action
+        $.ajax({
+            url: "deleteContentFormUserTable/" + userId,
+            success: function(result) {
+                console.log(result);
+                alert("User" + contentId + " is deleted");
+                location = location;
+            }
+
+        });
+
+        console.log(data);
+    });
+
+    //this is for button action on content table
     $('#content_table tbody').on('click', 'button', function() {
         var data = tableContent.row(this).data();
+        console.log(data);
         if (data === undefined) {
             data = tableContent.row($(this).parents('tr')).data();
         }
