@@ -7,7 +7,6 @@ $topTvSerieses = $data["TopFiveTvSerieses"];
 $topVideoContents = $data["TopFiveVideoContents"];
 $movies = $data["Movies"];
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,7 +71,7 @@ $movies = $data["Movies"];
             <div class="row h-100 ml-3 mr-2 col-md-2  mt-0" id="sidebar" style="background-color: rgba(128, 240, 147, 0)  ;">
                 <div class="col " align="center">
                     <a name="watch_list" href="../UserController/index" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light">Home</a><br>
-                    <a name="watch_list" id="side_links" class="m-3 m-3  p-2 btn btn-block btn-light">Watch list </a><br>
+                    <a name="watch_list" href="../UserController/watchlistLoader" id="side_links" class="m-3 m-3  p-2 btn btn-block btn-light">Watch list </a><br>
                     <a name="profile" href="" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
                 </div>
             </div>

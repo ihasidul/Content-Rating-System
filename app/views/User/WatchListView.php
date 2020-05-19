@@ -1,3 +1,10 @@
+<?php
+//var_dump($data);
+$WatchList = $data["Watchlist"];
+// echo ($WatchList)
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -82,35 +89,27 @@
                     <a name="profile" href="" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
                 </div>
             </div>
-            <div class="row-3 mr-auto ml-2 col-md-8">
+            <div class="row mr-auto ml-2 col-md-8">
 
 
                 <!-- here is content list -->
-                <div name="important_tables" class="mt-5" id="watchList_table_div">
-
+                <div name="important_tables" class="row mt-5" id="watchList_table_div">
                     <div>
-                        <h2 class="display-6">Watch List</h2><br>
+                        <h2 style="background-color: rgba(255, 255, 255, 0)">Watch List</h2><br>
                     </div>
 
-
-                    <table id="watch_list_table" class="table table-responsive table-body table-striped table-dark table-bordered" cellspacing="0">
+                    <table id="watch_list_table" class="table table-responsive table-body table-striped  table-bordered" cellspacing="0">
 
                         <thead>
                             <tr>
-
                                 <th>Content Name</th>
-                                <th>Content Creator</th>
                                 <th>Your Rating</th>
                                 <th>Your Comment</th>
-
-                                <th>User Rating</th>
-                                <th>Critic Rating</th>
-
                                 <!-- Have not done the json part -->
                             </tr>
                         </thead>
 
-                        <tbody id="CourseTable">
+                        <tbody>
                             <!--content table goes here table goes here. -->
 
                         </tbody>
@@ -137,38 +136,27 @@
         }
         document.getElementById('watchList_table_div').style.display = "inline";
     });
-    var tableGU = $('#watch_list_table').DataTable({
-        "ajax": {
-            "url": "getWatchListInfo/<?= $_SESSION['id']; ?>",
-        },
+    var tableWatchlist = $('#watch_list_table').DataTable({
+        // "ajax": {
+        //     "url": "",
+        // },
+        "data": <?php echo json_encode($WatchList); ?>,
         "autoWidth": false,
         "columnDefs": [{
                 "width": "32%",
-                "targets": [0, 1, 2, 3],
-                "data": null,
-                "defaultContent": "<button>Click!</button>"
+                "targets": [0, 1, 2],
+
+
             },
 
         ],
         "columns": [{
-                "data": "Content Name"
-            },
-            {
-                "data": "Content Creator"
-            },
-            {
-                "data": "Your Rating"
-            },
-            {
-                "data": "Your Comment"
-            },
-            {
-                "data": "User Rating"
-            },
-            {
-                "data": "Critic Rating"
-            },
-        ],
+            "data": "Content Name"
+        }, {
+            "data": "Your Rating"
+        }, {
+            "data": "Your Comment"
+        }, ],
     });
     $(document).ready(function() {
         $('#movies_search').select2();
@@ -177,6 +165,7 @@
     function redirectMovie(contentId) {
         window.location.href = `./../ContentController/content/${contentId}`;
     }
+    //this is for searching 
 </script>
 
 </html>

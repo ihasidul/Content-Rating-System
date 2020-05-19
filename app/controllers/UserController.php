@@ -47,14 +47,16 @@ class UserController extends Controller
     }
     public function watchlistLoader()
     {
-        $watchListData = [
-            "id" => $_SESSION['id'],
+        // var_dump($_SESSION['id']);
+        $data = [
+            "Id" => $_SESSION['id'],
             "Password" => $_SESSION['password'],
-
+            "Watchlist" => $this->getWatchListInfo($_SESSION['id'])
         ];
+        //var_dump($this->getWatchListInfo($_SESSION['id']));
 
 
-        $this->view("User/WatchlistView", $watchListData);
+        $this->view("User/WatchlistView", $data);
     }
     public function getWatchListInfo($userId)
     {

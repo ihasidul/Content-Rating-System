@@ -287,14 +287,15 @@ class ContentModel
     public function getWatchlistByUserId($userId)
     {
 
-        $sql = "SELECT * FROM content INNER JOIN watchlist on watchlist.contentId = content.id WHERE watchlist.userId = '{$userId}'";
+        $sql = "SELECT contentName,rating,comment FROM watchlist where userId = '{$userId}'";
         $db = new DataAccess();
+        // var_dump($sql);
         $result = $db->getData($sql);
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
-                var_dump($row);
-                $allFromWatchlist[] =  array("Content Name" => $row["name"], "Content Creator" => $row["content_creator"], "Your Rating" => $row["user_rating"], "Your Comment" => $row["comment"], "User Rating" => $row["all_user_rating"], "Critic Rating" => $row["critic_rating"]);
+                //var_dump($row);
+                $allFromWatchlist[] =  array("Content Name" => $row["contentName"], "Your Rating" => $row["rating"], "Your Comment" => $row["comment"]);
             }
             return $allFromWatchlist;
         } else {
