@@ -116,74 +116,72 @@
         </nav>
     </header>
 
-    <div class="h-100">
-        <!-- <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a> -->
-        <div class="row h-100">
-            <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
-                <div class="row " id="totalUserData">
+    <!-- <div class="h-100"> -->
+    <!-- <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a> -->
+    <div class="row h-100">
+        <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
 
-                </div>
 
-                <div class="col " align="center">
-                    <a name="content_table_div" href="../ContentCreatorController/index" class="m-3 p-2 btn btn-block btn-light">CONTENT LIST</a><br>
-                    <a name="uploadcontent.php" ref="../ContentCreatorController/contentUploadLoader" class="m-3 p-2 btn btn-block btn-light">UPLOAD CONTENT</a><br>
-                    <a name="profile" class="m-3 p-2 btn btn-block btn-light">CREATOR'S PROFILE</a><br>
-                </div>
+            <div class="col " align="center">
+                <a name="content_table_div" href="../ContentCreatorController/index" class="m-3 p-2 btn btn-block btn-light">CONTENT LIST</a><br>
+                <a name="uploadcontent.php" ref="../ContentCreatorController/contentUploadLoader" class="m-3 p-2 btn btn-block btn-light">UPLOAD CONTENT</a><br>
+                <a name="profile" href="../ContentCreatorController/loadCCProfile" class="m-3 p-2 btn btn-block btn-light">CREATOR'S PROFILE</a><br>
             </div>
-            <div class="mr-auto ml-2 col-md-8">
+        </div>
+        <div class="mr-auto ml-2 col-md-8">
 
-                <div>
-                    <h2 class="display-6">Upload Content</h2><br>
-                </div>
-
-
-                <div class="content">
-                    <form name="content" action="ContentCreatorController/uploadContent" onsubmit="return validateContent()" method="post">
-                        <input type="hidden" name="ccName" value="<?php echo $_SESSION['id']; ?>">
-                        <label for="name">Content Name</label>
-                        <input type="text" id="name" name="name" placeholder="Content name..">
-
-                        <label for="lname">Content Type</label>
-
-                        <select id="type" name="type">
-                            <option selected disabled>Select your Content Type</option>
-                            <option value="Movie">Movie</option>
-                            <option value="Natok">Natok</option>
-                            <option value="Video content">Video Content</option>
-                            <option value="Tv series">Tv Series</option>
-                        </select>
-
-                        <label for="genre">Content Genre</label>
-                        <select id="genre" name="genre">
-                            <option selected disabled>Select Genre</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Drama">Drame</option>
-                            <option value="Crime">Crime </option>
-                            <option value="Action">Action</option>
-                            <option value="Thriller">Triller</option>
-                            <option value="Comdey">Comdey</option>
-                        </select>
-
-                        <label for="image">Content Poster</label>
-                        <input type="file" class="file" id="poster" name="poster">
-
-
-                        <label>Content Link</label>
-                        <input type="text" id="link" name="link" placeholder="Content link..">
-
-
-                        <label>Cast Info</label>
-                        <textarea id="cast" name="cast" placeholder="Provide your cast Information..." style="height:80px"></textarea>
-
-                        <label>Release Date</label>
-                        <input type="date" id="date" name="date" class="file">
-
-
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
+            <div>
+                <h2 class="display-6">Upload Content</h2><br>
             </div>
 
+
+            <div class="content">
+                <form name="content" action="ContentCreatorController/uploadContent" onsubmit="return validateContent()" method="post">
+                    <input type="hidden" name="ccName" value="<?php echo $_SESSION['id']; ?>">
+                    <label for="name">Content Name</label>
+                    <input type="text" id="name" name="name" placeholder="Content name..">
+
+                    <label for="lname">Content Type</label>
+
+                    <select id="type" name="type">
+                        <option selected disabled>Select your Content Type</option>
+                        <option value="Movie">Movie</option>
+                        <option value="Natok">Natok</option>
+                        <option value="Video content">Video Content</option>
+                        <option value="Tv series">Tv Series</option>
+                    </select>
+
+                    <label for="genre">Content Genre</label>
+                    <select id="genre" name="genre">
+                        <option selected disabled>Select Genre</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Drama">Drame</option>
+                        <option value="Crime">Crime </option>
+                        <option value="Action">Action</option>
+                        <option value="Thriller">Triller</option>
+                        <option value="Comdey">Comdey</option>
+                    </select>
+
+                    <label for="image">Content Poster</label>
+                    <input type="file" class="file" id="poster" name="poster">
+
+
+                    <label>Content Link</label>
+                    <input type="text" id="link" name="link" placeholder="Content link..">
+
+
+                    <label>Cast Info</label>
+                    <textarea id="cast" name="cast" placeholder="Provide your cast Information..." style="height:80px"></textarea>
+
+                    <label>Release Date</label>
+                    <input type="date" id="date" name="date" class="file">
+
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     function validateContent() {

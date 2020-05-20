@@ -76,4 +76,26 @@ class ContentCreatorModel
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function getContentCreatroById($id)
+    {
+        $sql = "SELECT * FROM contentcreator where id = '{$id}'";
+        $db = new DataAccess();
+
+        $result = $db->getData($sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $users[] =  array(
+                    "User ID" => $row["id"],
+                    "Name" => $row["name"],
+                    "Email" => $row["email"],
+                    "Phone" => $row["phone"]
+                );
+            }
+            return $users;
+        } else {
+            echo "0 results";
+        }
+    }
 }

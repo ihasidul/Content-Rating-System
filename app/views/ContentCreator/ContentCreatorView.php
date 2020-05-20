@@ -81,7 +81,7 @@ $ContentList = $data["ContentsOfThisCC"];
                 <div class="col " align="center">
                     <a name="content_table_div" href="../ContentCreatorController/index" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT LIST</a><br>
                     <a name="uploadcontent.php" href="../ContentCreatorController/contentUploadLoader" class="m-3 p-2 btn btn-block btn-light">UPLOAD CONTENT</a><br>
-                    <a name=" profile" class="m-3 p-2 btn btn-block btn-light">CREATOR'S PROFILE</a><br>
+                    <a name=" profile" href="../ContentCreatorController/loadCCProfile" class="m-3 p-2 btn btn-block btn-light">CREATOR'S PROFILE</a><br>
 
                 </div>
             </div>

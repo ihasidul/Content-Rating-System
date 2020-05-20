@@ -41,4 +41,26 @@ class ContentCreatorController extends Controller
         $date = $_POST['date'];
         var_dump($contentCreator);
     }
+    public function loadCCProfile()
+    {
+        //$ccInfo = $this->model('ContentCreatorModel')->getContentCreatroById($_SESSION['id']);
+        $data = [
+            "CreatorInformation" => $this->model('ContentCreatorModel')->getContentCreatroById($_SESSION['id']),
+        ];
+
+        $this->view("ContentCreator/ContentCreatorProfileView", $data);
+    }
+
+    public function changePassword()
+    {
+
+        $id = $_POST['id'];
+        $pass = $_POST['pass'];
+        $this->model('LoginModel')->changePassword($id, $pass);
+        $data = [
+            "CreatorInformation" => $this->model('ContentCreatorModel')->getContentCreatroById($_SESSION['id']),
+        ];
+
+        $this->view("ContentCreator/ContentCreatorProfileView", $data);
+    }
 }
