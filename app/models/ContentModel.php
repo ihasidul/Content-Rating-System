@@ -303,4 +303,33 @@ class ContentModel
             // echo "0 results";
         }
     }
+
+    public function getContentsByCC($ContentCreatorId)
+    {
+        $sql = "SELECT * FROM content where content_creator = '{$ContentCreatorId}'";
+        $db =  new DataAccess();
+        $result = $db->getData($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $contents[] = array(
+                    "Content Creator" => $row["content_creator"],
+                    "Content Id" => $row["id"],
+                    "Content Name" => $row["name"],
+                    "Type" => $row["type"],
+                    "Genre" => $row["genre"],
+                    "Poster" => $row["posterName"],
+                    "Cast" => $row["cast"],
+                    "Date" => $row["date"],
+                    "User Rating" => $row["rating"],
+                    "Critic Rating" => $row["criticRating"],
+                    "Link" => $row["link"]
+                );
+            }
+            return $contents;
+        } else {
+            echo "THere is no contetn on the table";
+        }
+    }
 }

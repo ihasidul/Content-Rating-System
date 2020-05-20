@@ -1,3 +1,7 @@
+<?php
+$ContentList = $data["ContentsOfThisCC"];
+var_dump($ContentList);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -55,7 +59,9 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-
+                    <li class="nav-item text-white pt-1 mr-2">
+                        <h4><?php echo $_SESSION["id"]; ?></h4>
+                    </li>
                     <li class="nav-item active">
                         <a class="btn btn-primary mr-3" href="../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
                     </li>
@@ -73,9 +79,9 @@
                 </div>
 
                 <div class="col " align="center">
-                    <button name="content_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT LIST</button><br>
-                    <button name="uploadcontent.php" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">UPLOAD CONTENT</button><br>
-                    <button name="profile" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CREATOR'S PROFILE</button><br>
+                    <a name="content_table_div" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CONTENT LIST</a><br>
+                    <a name="uploadcontent.php" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">UPLOAD CONTENT</a><br>
+                    <a name="profile" class="m-3 p-2 btn btn-block btn-light" onclick="toggleTable(this.name);">CREATOR'S PROFILE</a><br>
 
                 </div>
             </div>
@@ -96,8 +102,9 @@
 
                         <thead>
                             <tr>
+
                                 <th>Content Creator</th>
-                                <th>Id</th>
+                                <th>Content Id</th>
                                 <th>Content Name</th>
                                 <th>Type</th>
                                 <th>Genre</th>
@@ -110,6 +117,9 @@
                                 <!-- Have not done the json part -->
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
 
                     </table>
                 </div>
@@ -127,21 +137,22 @@
         document.getElementById('content_table_div').style.display = "inline";
     });
     var tableContentList = $('#content_table').DataTable({
-        "ajax": {
-            "url": "getAllContent",
-        },
+        // "ajax": {
+        //     "url": "getAllContentByCC/" 
+        // },
+        "data": <?php echo json_encode($ContentList); ?>,
         "autoWidth": false,
         "columnDefs": [{
             "width": "32%",
-            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            "targets": [0, 1, 2, 3, ]
         }],
 
 
         "columns": [{
-                "data": "ID"
+                "data": "Content Creator"
             },
             {
-                "data": "Creator Name"
+                "data": "Content Id"
             },
             {
                 "data": "Content Name"
@@ -166,6 +177,9 @@
             },
             {
                 "data": "Critic Rating"
+            },
+            {
+                "data": "Link"
             },
         ],
     }, );
