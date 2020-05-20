@@ -86,7 +86,7 @@ $WatchList = $data["Watchlist"];
                 <div class="col " align="center">
                     <a name="home" href="../UserController/index" id="side_links" class="m-3 mt-5  p-2 btn btn-block btn-light">Home</a><br>
                     <a name="watch_list" href="#" class="m-3 m-3  p-2 btn btn-block btn-light">Watch list </a><br>
-                    <a name="profile" href="" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
+                    <!-- <a name="profile" href="" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br> -->
                 </div>
             </div>
             <div class="row mr-auto ml-2 col-md-8">
