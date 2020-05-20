@@ -41,7 +41,7 @@ class LoginModel
 
     function insertUser($id, $password, $permission)
     {
-        echo "i am in insert ";
+        //echo "i am in insert ";
 
         try {
             //this function will be needing to insert user in login table
@@ -78,6 +78,7 @@ class LoginModel
         }
         return $data;
     }
+
 
     function validateLogin($id, $password)
     {
@@ -131,6 +132,18 @@ class LoginModel
             } else {
                 return false;
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function changePassword($id, $password)
+    {
+        try {
+            $sql = "UPDATE `login` SET `password`= '{$password}' WHERE id = '{$id}'";
+            $db =  new DataAccess();
+
+            $db->executeQuery($sql);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
