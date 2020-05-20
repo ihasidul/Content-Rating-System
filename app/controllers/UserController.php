@@ -64,5 +64,16 @@ class UserController extends Controller
         $watchlist = $contentObj->getWatchlistByUserId($userId);
         return $watchlist;
     }
+    // public function loadUserProfile()
+    // {
+    //     //$ccInfo = $this->model('ContentCreatorModel')->getContentCreatroById($_SESSION['id']);
+    //     $data = [
+
+    //         "UserInformation" => $this->model('UserModel')->getContentCreatroById($_SESSION['id']),
+    //     ];
+
+    //     $this->view("ContentCreator/ContentCreatorProfileView", $data);
+    // }
+
 }
 ?>
