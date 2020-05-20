@@ -83,12 +83,12 @@ class ContentModel
         $this->criticRating = $criticRating;
     }
 
-    public function insertContent($contentCreator, $name, $type, $genre, $posterName, $cast, $date, $link, $userRating, $criticRating)
+    public function creatContent($contentCreator, $contentName, $type, $genre, $posterName, $cast, $date, $userRating, $criticRating, $link)
     {
 
         try {
             //this function will be needing to insert user in login table
-            $sql = "insert into content (content_creator,name,type,genere,posterName,cast,date,rating,criticRating,link) values ('" . $contentCreator . "','" . $name . "','" . $type . "','" . $genre . "','" . $posterName . "','" . $cast . "','" . $date . "','" . $userRating . "','" . $criticRating . "','" . $link . "');";
+            $sql = "insert into content (content_creator,name,type,genre,posterName,cast,date,rating,criticRating,link) values ('" . $contentCreator . "','" . $contentName . "','" . $type . "','" . $genre . "','" . $posterName . "','" . $cast . "','" . $date . "','" . $userRating . "','" . $criticRating . "','" . $link . "');";
             $db =  new DataAccess();
             $db->executeQuery($sql);
         } catch (Exception $e) {
@@ -329,7 +329,7 @@ class ContentModel
             }
             return $contents;
         } else {
-            echo "THere is no contetn on the table";
+            // echo "THere is no contetn on the table";
         }
     }
 }
