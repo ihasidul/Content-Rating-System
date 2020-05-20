@@ -139,7 +139,7 @@ if (empty($comments)) {
 
                     <a name="watch_list" href="../../UserController/watchlistLoader" id="side_links" class="m-3  p-2 btn btn-block btn-light">Watch list
                     </a><br>
-                    <a name="profile" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br>
+                    <!-- <a name="profile" id="side_links" class="m-3 p-2 btn btn-block btn-light">Profile</a><br> -->
                 </div>
             </div>
             <div class="col-md-8 overflow-auto" style="height: 100%;">
