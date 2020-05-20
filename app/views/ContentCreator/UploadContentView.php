@@ -136,7 +136,7 @@
 
 
             <div class="content">
-                <form name="content" action="ContentCreatorController/uploadContent" onsubmit="return validateContent()" method="post">
+                <form name="content" action="uploadContent" onsubmit="return validateContent()" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="ccName" value="<?php echo $_SESSION['id']; ?>">
                     <label for="name">Content Name</label>
                     <input type="text" id="name" name="name" placeholder="Content name..">
@@ -155,11 +155,11 @@
                     <select id="genre" name="genre">
                         <option selected disabled>Select Genre</option>
                         <option value="Romance">Romance</option>
-                        <option value="Drama">Drame</option>
+                        <option value="Drama">Drama</option>
                         <option value="Crime">Crime </option>
                         <option value="Action">Action</option>
                         <option value="Thriller">Triller</option>
-                        <option value="Comdey">Comdey</option>
+                        <option value="Comdey">Comedy</option>
                     </select>
 
                     <label for="image">Content Poster</label>
