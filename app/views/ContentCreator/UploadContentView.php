@@ -1,336 +1,235 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="uploadcontent.css">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<title>Ulpoad Content</title>
-<script src="validateContent.js"></script>
-<style>
-    body {
-        background-color: #D9FCFD;
-        font-family: Bookman Old Style;
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upload Content</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.css" />
 
-    }
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.21/sp-1.1.0/datatables.min.js"></script>
+    <!--<script src="../includes/AdminTables.js"></script> -->
 
+    <style>
+        .back-to-top {
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
 
-    li {
-        float: left;
-        padding: 3px;
-        width: 450px;
+        html,
+        body {
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    }
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: right;
 
+            visibility: hidden;
+        }
 
+        * {
+            box-sizing: border-box;
+        }
 
-    li a {
+        input[type=text],
+        select,
+        textarea,
+        file {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
 
-        margin: 5% 2%;
-        color: rgb(43, 90, 99);
-        font-size: 35px;
-        width: 600px;
-        font-family: Matura MT Script Capitals;
-        padding: 14px 40px;
+        .file {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
 
-    }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
+        input[type=submit]:hover {
+            background-color: white;
+        }
 
+        .content {
+            border-radius: 5px;
+            background-color: #303435;
+            padding: 20px;
 
+        }
 
-    .cc {
-        width: 450px;
-        float: right;
-        margin: right;
-    }
+        label {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
 
+</head>
 
+<body style="background-color:#E4F1F2 ">
+    <header>
+        <nav class="navbar sticky-top navbar-expand-lg navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Content-Rating-System</a>
 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    #rcorners1 {
-        border-radius: 15px;
-        background: #FFFFFF;
-        padding: 15px;
-        width: 180px;
-        height: 15;
-        color: #00767A;
-        font-size: 15px;
-    }
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ml-auto">
+                    <li class="nav-item ml-auto mx-sm-5">
 
-
-    #rcorners3 {
-        margin: 2% 10%;
-        border-radius: 20px;
-        background: #6EDDAC;
-        padding: 80px;
-        width: 800px;
-        height: 950px;
-        font-size: 20px;
-    }
-
-    th {
-        width: 20%;
-    }
-
-    .col-25 {
-        float: left;
-        width: 15%;
-        margin-top: 0px;
-    }
-
-    .row {
-        margin: 0%;
-    }
-
-    label {
-        padding: 15px 10px 10px 5;
-        display: inline-block;
-        width: 250%;
-    }
-
-
-
-    div {
-        border-radius: 5px;
-        background-color: #cff8eb;
-        padding: 15px;
-        float: center;
-
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 150%;
-
-    }
-
-    th {
-        width: 10%;
-    }
-
-    button {
-        margin: 2% 10%;
-        border-radius: 5px;
-        background: aquamarine;
-        font-family: Bookman Old Style;
-        font-size: 16px;
-        text-align: center;
-        padding: 8px;
-        width: 60px;
-    }
-
-    .search {
-        margin: 2% 10%;
-        width: 450px;
-        font-family: Bookman Old Style;
-        font-size: 15px;
-        padding: 9px;
-        text-align: center;
-        border-radius: 10px;
-    }
-
-
-
-    input,
-    textarea,
-    select {
-        font-family: candara;
-
-        font-size: 15px;
-        background-color: white;
-        width: 250px;
-        padding: 10px;
-        border: 3px solid #ccc;
-        border-radius: 6px;
-        box-sizing: border-box;
-        resize: vertical;
-        margin: -1% 15%;
-
-
-    }
-
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-
-    }
-
-
-
-    .dropbtn {
-        background-color: #22C197;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-
-
-    }
-
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 15px;
-        background: #1EAC86;
-        margin: -0% 5%;
-
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-
-    }
-
-    .dropdown {
-        margin: -4.5% 2%;
-        width: 300px;
-        padding: 7px;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #23DDAC;
-    }
-</style>
-
-<body>
-    <ul>
-        <li><a class="active">Content Rating Site</a></li>
-
-
-        <div class="dropdown" style="float:right;">
-
-            <button style="width:250px;" class="dropbtn">Content Creator</button>
-
-            <div class="dropdown-content">
-                <a href="upload_content.php" id="rcorners1">Upload Content</a> <br>
-                <a href="#" id="rcorners1">Content List</a><br>
-                <a href="Creatorprofile.php" id="rcorners1">Profile</a><br>
-                <a href="#" id="rcorners1">Log Out</a><br>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <h4 class="mr-3" style="color: white"><?php echo $_SESSION["id"]; ?></h4>
+                    <li class="nav-item active">
+                        <a class="btn btn-primary mr-3" href="../LoginController/logout">Logout<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
+    </header>
 
-    </ul>
+    <div class="h-100">
+        <!-- <a href="../LoginController/loadSignUp" class="btn btn-primary">Sign Up Page</a> -->
+        <div class="row h-100">
+            <div class=" row h-100 ml-3 mr-2 col-md-2  mt-0" style="background-color: #4B94AF;">
+                <div class="row " id="totalUserData">
 
-    <table>
+                </div>
 
+                <div class="col " align="center">
+                    <a name="content_table_div" href="../ContentCreatorController/index" class="m-3 p-2 btn btn-block btn-light">CONTENT LIST</a><br>
+                    <a name="uploadcontent.php" ref="../ContentCreatorController/contentUploadLoader" class="m-3 p-2 btn btn-block btn-light">UPLOAD CONTENT</a><br>
+                    <a name="profile" class="m-3 p-2 btn btn-block btn-light">CREATOR'S PROFILE</a><br>
+                </div>
+            </div>
+            <div class="mr-auto ml-2 col-md-8">
 
-        <tr>
-            <th>
-
-
-                <div style="font-size:20px;" id="rcorners3">
-                    Upload Content
-                    <form name="content" action="upload.js" onsubmit="return validateContent()">
-
-
-                        <div class="row">
-                            <div class="col-25">
-                                <label>Content Name : </label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="name" placeholder="Enter content name..">
-                            </div>
-                        </div>
+                <div>
+                    <h2 class="display-6">Upload Content</h2><br>
+                </div>
 
 
-                        <div class="row">
-                            <div class="col-25">
-                                <label>Content Type : </label>
-                            </div>
-                            <div class="col-75">
-                                <select name="type">
-                                    <option value="Natok">Natok</option>
-                                    <option value="Cinema">Cinema</option>
-                                    <option value="Tvseries">Tv Series</option>
-                                    <option value="shortf">Short Flim</option>
-                                </select>
-                            </div>
-                        </div>
+                <div class="content">
+                    <form name="content" action="ContentCreatorController/uploadContent" onsubmit="return validateContent()" method="post">
+                        <input type="hidden" name="ccName" value="<?php echo $_SESSION['id']; ?>">
+                        <label for="name">Content Name</label>
+                        <input type="text" id="name" name="name" placeholder="Content name..">
 
-                        <div class="row">
-                            <div class="col-25">
-                                <label>Genre : </label>
-                            </div>
-                            <div class="col-75">
-                                <select name="genre">
-                                    <option value="Thriller">Thriller & Mystrey </option>
-                                    <option value="Action ">Action & Crime </option>
-                                    <option value="Comedy">Comedy</option>
-                                    <option value="Animation">Animation</option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Horror">Horror</option>
-                                    <option value="War">War</option>
-                                </select>
-                            </div>
-                        </div>
+                        <label for="lname">Content Type</label>
 
+                        <select id="type" name="type">
+                            <option selected disabled>Select your Content Type</option>
+                            <option value="Movie">Movie</option>
+                            <option value="Natok">Natok</option>
+                            <option value="Video content">Video Content</option>
+                            <option value="Tv series">Tv Series</option>
+                        </select>
 
-                        <div class="row">
-                            <div class="col-25">
-                                <label>Upload Poster of Content : </label>
-                            </div>
-                            <div class="col-75">
-                                <input type="file" name="ImageToUpload" id="ImageToUpload">
-                            </div>
-                        </div>
+                        <label for="genre">Content Genre</label>
+                        <select id="genre" name="genre">
+                            <option selected disabled>Select Genre</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Drama">Drame</option>
+                            <option value="Crime">Crime </option>
+                            <option value="Action">Action</option>
+                            <option value="Thriller">Triller</option>
+                            <option value="Comdey">Comdey</option>
+                        </select>
 
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="link">Content Link : </label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="flink" name="link" placeholder="Enter content link..">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="Cast">Cast Info : </label>
-                            </div>
-                            <div class="col-75">
-                                <textarea name="cast" rows="2" cols="20"> </textarea>
-                            </div>
-                        </div>
+                        <label for="image">Content Poster</label>
+                        <input type="file" class="file" id="poster" name="poster">
 
 
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fdate">Release Date</label>
-                            </div>
-                            <div class="col-75">
-                                <input type="date" id="fdate" name="date" placeholder="Enter release date..">
-                            </div>
-                        </div>
+                        <label>Content Link</label>
+                        <input type="text" id="link" name="link" placeholder="Content link..">
 
-                        <br><br>
+
+                        <label>Cast Info</label>
+                        <textarea id="cast" name="cast" placeholder="Provide your cast Information..." style="height:80px"></textarea>
+
+                        <label>Release Date</label>
+                        <input type="date" id="date" name="date" class="file">
+
+
                         <input type="submit" value="Submit">
-                        <br><br>
-            </th>
-        </tr>
-        </form>
-        </div>
-        </div>
-        </td>
-        </tr>
-    </table>
+                    </form>
+                </div>
+            </div>
 
 </body>
+<script>
+    function validateContent() {
+        var contentName = document.content.name.value;
+        var contentType = document.content.type.value;
+
+        var contentGenre = document.content.genre.value;
+        var contentPoster = document.content.poster.value;
+        var contentLink = document.content.link.value;
+        var contentCast = document.content.cast.value;
+        var contentDate = document.content.date.value;
+
+        if (contentName == "") {
+            alert("Fill up All the Filde");
+            document.content.name.focus();
+            return false;
+        } else if (contentType == "") {
+            alert("Please pick a Type");
+            document.content.type.focus();
+            return false;
+        } else if (contentGenre == "") {
+            alert("Please pick a Genre");
+            document.content.genre.focus();
+            return false;
+        } else if (contentPoster == "") {
+            alert("Fill up All the Filde");
+            document.content.ImageToUpload.focus();
+            return false;
+        } else if (contentLink == "") {
+            alert("Fill up All the Filde");
+            document.content.link.focus();
+            return false;
+        } else if (contentCast == "") {
+            alert("Fill up All the Filde");
+            document.content.cast.focus();
+            return false;
+        } else if (contentDate == "") {
+            alert("Fill up All the Filde");
+            document.content.date.focus();
+            return false;
+        } else {
+            alert("Validation is Successfull")
+            return true;
+        }
+
+    }
+</script>
 
 </html>
