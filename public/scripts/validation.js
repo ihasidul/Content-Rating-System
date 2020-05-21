@@ -3,7 +3,7 @@ function isTheIdAndPassEmpty() {
 	var password = document.loginForm.password.value;
 
 	if (name == null || name == '') {
-		alert("Name can't be blank");
+		alert("ID can't be blank");
 		return false;
 	}
 	if (password == null || password == '') {

@@ -29,7 +29,7 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Your Account</h4>
             <p class="text-center">Get registered today!</p>
-            <form method="POST" action="signUpUser">
+            <form method="POST" name="signup" onsubmit="return SignUpValidation()" action="signUpUser">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
@@ -88,5 +88,109 @@
     </footer>
 
 </body>
+<script>
+    function SignUpValidation() {
+
+
+        var name = document.forms["signup"]["user_name"].value;
+        var password = document.forms["signup"]["user_password"].value;
+        var phone = document.forms["signup"]["user_phone"].value;
+        var email = document.forms["signup"]["user_email"].value;
+        var conpass = document.forms["signup"]["user_password_conf"].value;
+        var type = document.forms["signup"]["user_type"].value;
+
+
+        /*console.log(email);
+        console.log(password);
+        console.log(name);
+        console.log(phone);
+        console.log(conpass);*/
+
+        var regularexpression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
+        if (name == "" || email == "" || password == "" || phone == "" || conpass == "" || type == "") {
+            alert("Please Fill up All the Fields.");
+            return false;
+        } else if (!email.match(regularexpression)) {
+            alert("Please enter a valid email");
+
+            return false;
+        } else if (phone.length < 11) {
+            alert("Enter valid phone number");
+
+            return false;
+        } else if (password.length < 8) {
+            alert("Password is too Short");
+
+            return false;
+        } else if (password != conpass) {
+            alert("Password Doesn't Match");
+
+            return false;
+        } else {
+            alert("Validation Successfull")
+            return true;
+        }
+
+
+    }
+    // function SignUpValidation() {
+    //     var name = document.forms["signup"]["user_name"].value;
+    //     var password = document.forms["signup"]["user_password"].value;
+    //     var phone = document.forms["signup"]["user_phone"].value;
+    //     var email = document.forms["signup"]["user_email"].value;
+    //     var repeatpassword = document.forms["signup"]["user_password_conf"].value;
+    //     var password = document.getElementById("user_password");
+
+    //     var regularexpression = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i';
+    //     var nameformat = '/^[A-Za-z]+$/';
+
+    //     if (name == null || name == '') {
+    //         alert("Name can't be blank");
+    //         return false;
+    //     }
+    //     // if (password == null || password == '') {
+    //     //     alert("Password can't be blank");
+    //     //     return false;
+    //     // } else if (password.length < 3) {
+    //     //     alert('Password must be at least 3 characters long.');
+    //     //     return false;
+    //     // }
+
+
+    //     if (!email.value.match(regularexpression)) {
+    //         alert("Please enter a valid email.");
+    //         document.signup.email.focus();
+    //         return false;
+    //     }
+    //     if (!name.value.match(nameformat)) {
+    //         alert("Please enter a valid name.");
+    //         document.signup.name.focus();
+    //         return false;
+    //     }
+    //     if (phone.value.length < 11) {
+    //         alert("Enter valid phone number");
+    //         document.signup.phone.focus();
+    //         return false;
+    //     }
+    //     if (password.value.length < 8) {
+    //         alert("Password is too Short");
+    //         document.signup.password.focus();
+    //         return false;
+    //     }
+    //     if (repeatpassword.value.length < 8) {
+    //         alert("Password is too Short");
+    //         document.signup.password.focus();
+    //         return false;
+    //     }
+    //     if (password != repetpassword) {
+    //         alert("Password Doesn't Match");
+    //         document.singup.repeatpassword.focus();
+    //         return false;
+    //     }
+
+    // }
+</script>
 
 </html>

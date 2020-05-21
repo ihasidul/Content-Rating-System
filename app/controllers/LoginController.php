@@ -129,13 +129,12 @@ class LoginController extends Controller
                 //insertUser($id, $password, $permissionType)
                 $loginObj->insertUser($id, $_POST['user_password'], "user");
             }
+            echo "Registration successful. Loggin you in automatically...";
+            echo "Credentials: " . $id . " Password: " . $_POST['user_password'];
+            //sleep(5);
+
+            header("Location: autoLogin/" . $id . '/' . $_POST['user_password']);
         }
-
-        echo "Registration successful. Loggin you in automatically...";
-        echo "Credentials: " . $id . " Password: " . $_POST['user_password'];
-        //sleep(5);
-
-        header("Location: autoLogin/" . $id . '/' . $_POST['user_password']);
     }
 
     public function autoLogin($id, $password)
